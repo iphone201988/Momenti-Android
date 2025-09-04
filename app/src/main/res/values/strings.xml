@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">MOMENTI</string>
+
+    <string name="session_expired">session_expired</string>
+    <string name="alert">Alert</string>
+    <string name="post_detail">Post Detail</string>
+    <string name="please_try_again">Please try again</string>
+    <string name="plz_wait">Plz wait</string>
+    <string name="error_found">Error Found</string>
+    <string name="click_me">Click Me</string>
+    <string name="android_base_2025">Android Base 2025</string>
+    <string name="todo">TODO</string>
+    <string name="your_daily_growth_one_step_at_a_time">Your Daily Growth, \nOne Step at a Time</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="momenti">MOMENTI</string>
+    <string name="stay_accountable_grow_daily_and_track_gratitude">Stay accountable, grow daily, \nand track gratitude.</string>
+    <string name="set_up_your_username_password_you_can_change_it_later">Set up your username password. \nYou can change it later.</string>
+    <string name="we_have_sent_4_digit_code_to_your_email">We have sent 4 digit code to your email</string>
+    <string name="take_a_moment_to_reflect_on_the_good_today">Take a moment to reflect on \nthe good today</string>
+    <string name="account_created_successfully">Account Created \nSuccessfully</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="please_enter_the_email_address_associated_with_your_account">Please enter the email address \nassociated with your account</string>
+    <string name="enter_new_password">Enter New Password</string>
+    <string name="enter_new_password_different_for_the_old_password">Enter new password different for \nthe old password.</string>
+    <string name="password_changed_successfully">Password Changed Successfully</string>
+    <string name="gratitude">Gratitude</string>
+    <string name="tasks">Tasks</string>
+    <string name="you_can_add_task_for_future_days_we_will_notify_you">You can add task for future days \nwe will notify you</string>
+    <string name="add_task">Add task</string>
+    <string name="add_task_for">Add task for</string>
+    <string name="delete_account">Delete Account</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="change_password">Change Password</string>
+    <string name="share_with_friends">Share with Friends</string>
+    <string name="message_preview_when_your_share_it_with_friends">Message preview when your share it with friends:</string>
+    <string name="task_added_on">Task added on :</string>
+    <string name="streak">Streak</string>
+    <string name="total_task_added">Total Task Added</string>
+    <string name="life_balance_insight">Life Balance Insight</string>
+    <string name="gratitude_summary">Gratitude summary</string>
+    <string name="entries_this_week">Entries this week</string>
+    <string name="skipped_days">Skipped Days</string>
+    <string name="your_ai_coach">Your AI Coach</string>
+    <string name="daily_reflection">Daily Reflection</string>
+    <string name="awesome_focus">Awesome focus</string>
+    <string name="you_completed_4_5_tasks_today">You completed 4/5 tasks today</string>
+    <string name="add_to_tomorrow_s_power_list">Add to Tomorrow’s \nPower List</string>
+    <string name="health_seem_low_this_week_suggestion_add_a_10_min_walk_tomorrow">Health seem low this week. \nSuggestion: Add a 10-min walk tomorrow?</string>
+    <string name="notification">Notification</string>
+</resources>

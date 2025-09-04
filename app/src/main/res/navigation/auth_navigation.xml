@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth_navigation">
+
+
+    <fragment
+         android:id="@+id/fragmentLogin"
+        android:name="com.tech.momenti.ui.auth.login.LoginFragment"
+        tools:layout="@layout/fragment_login"/>
+
+    <fragment
+        android:id="@+id/fragmentCreateAccount"
+        android:name="com.tech.momenti.ui.auth.signup.CreateAccountFragment"
+        tools:layout="@layout/fragment_create_account"/>
+
+    <fragment
+        android:id="@+id/fragmentVerifyOtp"
+        android:name="com.tech.momenti.ui.auth.signup.VerifyOtpFragment"
+        tools:layout="@layout/fragment_verify_otp"/>
+
+    <fragment
+        android:id="@+id/fragmentDailyTask"
+        android:name="com.tech.momenti.ui.auth.signup.DailyTaskFragment"
+        tools:layout="@layout/fragment_daily_task"/>
+
+    <fragment
+        android:id="@+id/fragmentDailyGratitude"
+        android:name="com.tech.momenti.ui.auth.signup.DailyGratitudeFragment"
+        tools:layout="@layout/fragment_daily_gratitude"/>
+
+    <fragment
+    android:id="@+id/fragmentAccountCreated"
+    android:name="com.tech.momenti.ui.auth.signup.AccountCreatedFragment"
+    tools:layout="@layout/fragment_account_created"/>
+
+    <fragment
+        android:id="@+id/fragmentForgotPassword"
+        android:name="com.tech.momenti.ui.auth.signup.ForgotPasswordFragment"
+        tools:layout="@layout/fragment_forgot_password"/>
+
+    <fragment
+        android:id="@+id/fragmentNewPassword"
+        android:name="com.tech.momenti.ui.auth.signup.NewPasswordFragment"
+        tools:layout="@layout/fragment_new_password"/>
+
+
+    <fragment
+        android:id="@+id/fragmentPasswordChanged"
+        android:name="com.tech.momenti.ui.auth.signup.PasswordChangedFragment"
+        tools:layout="@layout/fragment_password_changed"/>
+
+</navigation>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/common_navigation">
+
+
+
+    <fragment
+        android:id="@+id/fragmentAddTask"
+        android:name="com.tech.momenti.ui.add_task.AddTaskFragment"
+        tools:layout="@layout/fragment_add_task"/>
+
+    <fragment
+        android:id="@+id/fragmentEditProfile"
+        android:name="com.tech.momenti.ui.edit_profile.EditProfileFragment"
+        tools:layout="@layout/fragment_edit_profile"/>
+
+    <fragment
+        android:id="@+id/fragmentChangePassword"
+        android:name="com.tech.momenti.ui.change_password.ChangePasswordFragment"
+        tools:layout="@layout/fragment_change_password"/>
+
+    <fragment
+        android:id="@+id/fragmentShare"
+        android:name="com.tech.momenti.ui.share.ShareFragment"
+        tools:layout="@layout/fragment_share"/>
+
+
+    <fragment
+        android:id="@+id/fragmentYourAiCoach"
+        android:name="com.tech.momenti.ui.your_ai_coach.YourAiCoachFragment"
+        tools:layout="@layout/fragment_your_ai_coach"/>
+
+    <fragment
+        android:id="@+id/fragmentNotification"
+        android:name="com.tech.momenti.ui.notification.NotificationFragment"
+        tools:layout="@layout/fragment_notification"/>
+
+</navigation>

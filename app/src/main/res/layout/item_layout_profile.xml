@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+
+
+        <variable
+            name="bean"
+            type="com.tech.momenti.data.ProfileData" />
+
+        <variable
+            name="callback"
+            type="com.tech.momenti.base.SimpleRecyclerViewAdapter.SimpleCallback" />
+
+        <variable
+            name="pos"
+            type="Integer" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/consMain"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:onClick="@{v -> callback.onItemClick(v,bean,pos)}">
+        
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/icons"
+            setIcon="@{bean.icon}"
+            android:layout_width="@dimen/_18sdp"
+            android:layout_height="@dimen/_18sdp"
+            app:tintByType="@{bean.textColor}"
+            android:src="@drawable/iv_edit_profile"
+            android:layout_marginStart="@dimen/_10sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title"
+            style="@style/Textview_Regular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{bean.title}"
+            app:textColorByType="@{bean.textColor}"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/app_black"
+            android:layout_marginStart="@dimen/_10sdp"
+            app:layout_constraintTop_toTopOf="@id/icons"
+            app:layout_constraintStart_toEndOf="@id/icons"
+            app:layout_constraintBottom_toBottomOf="@id/icons"/>
+
+
+        <ImageView
+            android:id="@+id/sideArrow"
+            android:layout_width="@dimen/_12sdp"
+            android:layout_height="@dimen/_12sdp"
+            android:src="@drawable/iv_side_arrow"
+            android:visibility="@{bean.type==1?View.VISIBLE:View.GONE}"
+            android:layout_marginEnd="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/icons"
+            app:layout_constraintBottom_toBottomOf="@id/icons"/>
+
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchVisibility"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:thumb="@drawable/thum_background"
+            android:visibility="@{bean.type==2?View.VISIBLE:View.GONE}"
+            app:layout_constraintTop_toTopOf="@id/icons"
+            android:layout_marginEnd="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="@id/icons"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:track="@drawable/track_background" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

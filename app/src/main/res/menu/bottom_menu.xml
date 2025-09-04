@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/iv_home"
+        android:title="Home" />
+    <item
+        android:id="@+id/history"
+        android:icon="@drawable/iv_history"
+        android:title="History" />
+    <item
+        android:id="@+id/insight"
+        android:icon="@drawable/iv_insight"
+        android:title="Insight" />
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/iv_profile"
+        android:title="Profile" />
+</menu>

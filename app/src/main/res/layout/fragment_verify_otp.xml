@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.tech.momenti.ui.auth.AuthCommonVM" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_color"
+        tools:context=".ui.auth.signup.VerifyOtpFragment">
+
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="@dimen/_26sdp"
+            android:layout_height="@dimen/_26sdp"
+            android:src="@drawable/iv_back"
+            android:onClick="@{v -> vm.onClick(v)}"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_50sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appName"
+            style="@style/TextView_600_SemiBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/momenti"
+            android:textColor="@color/app_black"
+            android:textSize="@dimen/_16ssp"
+            app:layout_constraintTop_toTopOf="@id/ivBack"
+            app:layout_constraintBottom_toBottomOf="@id/ivBack"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/createAccount"
+            style="@style/TextView_400_Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/app_black"
+            android:textSize="@dimen/_20ssp"
+            android:text="Verify Its you"
+            android:layout_marginTop="@dimen/_40sdp"
+            app:layout_constraintTop_toBottomOf="@id/appName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/des"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_14ssp"
+            android:textColor="@color/gray"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="@string/we_have_sent_4_digit_code_to_your_email"
+            app:layout_constraintTop_toBottomOf="@id/createAccount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/consMain"
+            android:background="@drawable/card_bg"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:elevation="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_50sdp"
+            app:layout_constraintTop_toBottomOf="@id/des"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+
+            <LinearLayout
+                android:id="@+id/otpLinear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:gravity="center"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:orientation="horizontal"
+                android:weightSum="4"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtOtpOne"
+                    style="@style/TextView_600_SemiBold"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/radius_border_gray"
+                    android:gravity="center"
+                    android:hint="-"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/app_black" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtOtpTwo"
+                    style="@style/TextView_600_SemiBold"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/radius_border_gray"
+                    android:gravity="center"
+                    android:hint="-"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/app_black" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtOtpThree"
+                    style="@style/TextView_600_SemiBold"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/radius_border_gray"
+                    android:gravity="center"
+                    android:hint="-"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/app_black" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtOtpFour"
+                    style="@style/TextView_600_SemiBold"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/radius_border_gray"
+                    android:gravity="center"
+                    android:hint="-"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/app_black" />
+            </LinearLayout>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/signUpBtn"
+                android:layout_width="0dp"
+                style="@style/TextView_400_Regular"
+                android:layout_height="wrap_content"
+                android:text="Signup"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:textSize="@dimen/_14ssp"
+                android:textColor="@color/white"
+                android:padding="@dimen/_10sdp"
+                android:onClick="@{v -> vm.onClick(v)}"
+                android:gravity="center"
+                android:background="@drawable/button_bg"
+                app:layout_constraintStart_toStartOf="@id/otpLinear"
+                app:layout_constraintEnd_toEndOf="@id/otpLinear"
+                app:layout_constraintTop_toBottomOf="@id/otpLinear"/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/didntGEtOtp"
+                style="@style/TextView_400_Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/app_black"
+                android:textSize="@dimen/_14ssp"
+                android:layout_marginEnd="@dimen/_50sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                app:layout_constraintStart_toStartOf="@id/signUpBtn"
+                app:layout_constraintEnd_toEndOf="@id/signUpBtn"
+                app:layout_constraintTop_toBottomOf="@id/signUpBtn"
+                android:text="Didn't get the code resend code"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/resend"
+                style="@style/TextView_500_Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Resend"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:textSize="@dimen/_14ssp"
+                android:textColor="@color/yellow"
+                app:layout_constraintStart_toEndOf="@id/didntGEtOtp"
+                app:layout_constraintTop_toTopOf="@id/didntGEtOtp"
+                app:layout_constraintBottom_toBottomOf="@id/didntGEtOtp"/>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>
