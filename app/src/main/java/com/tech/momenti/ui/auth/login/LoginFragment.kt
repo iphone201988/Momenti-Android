@@ -2,6 +2,7 @@ package com.tech.momenti.ui.auth.login
 
 import android.content.Intent
 import android.text.InputType
+import android.text.TextUtils
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -9,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.tech.momenti.R
 import com.tech.momenti.base.BaseFragment
 import com.tech.momenti.base.BaseViewModel
+import com.tech.momenti.base.utils.showToast
 import com.tech.momenti.databinding.FragmentLoginBinding
 import com.tech.momenti.ui.auth.AuthCommonVM
 import com.tech.momenti.ui.home_screen.HomeDashboardActivity
@@ -38,8 +40,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                     signUpShowHidePassword()
                 }
                 R.id.loginBtn ->{
-                    val intent = Intent(requireContext(), HomeDashboardActivity::class.java)
-                    startActivity(intent)
+                    if (isEmptyField()){
+                        val intent = Intent(requireContext(), HomeDashboardActivity::class.java)
+                        startActivity(intent)
+                    }
+
                 }
             }
         })
@@ -66,4 +71,15 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     }
 
 
+    private fun isEmptyField() : Boolean {
+        if (TextUtils.isEmpty(binding.etEmail.text.toString().trim())){
+            showToast("Please enter email")
+             return false
+        }
+        if (TextUtils.isEmpty(binding.etPassword.text.toString().trim())){
+            showToast("Please enter password")
+            return false
+        }
+        return  true
+    }
 }

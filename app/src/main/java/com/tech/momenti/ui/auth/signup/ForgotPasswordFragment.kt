@@ -1,5 +1,6 @@
 package com.tech.momenti.ui.auth.signup
 
+import android.text.TextUtils
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -7,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.tech.momenti.R
 import com.tech.momenti.base.BaseFragment
 import com.tech.momenti.base.BaseViewModel
+import com.tech.momenti.base.utils.showToast
 import com.tech.momenti.databinding.FragmentForgotPasswordBinding
 import com.tech.momenti.ui.auth.AuthCommonVM
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,8 +38,10 @@ class ForgotPasswordFragment : BaseFragment<FragmentForgotPasswordBinding>() {
         viewModel.onClick.observe(viewLifecycleOwner, Observer {
             when(it?.id){
                 R.id.saveBtn ->{
+                    if (isEmptyField()){
+                        findNavController().navigate(R.id.fragmentVerifyOtp)
 
-                    findNavController().navigate(R.id.fragmentVerifyOtp)
+                    }
 
                 }
                 R.id.ivBack ->{
@@ -45,6 +49,15 @@ class ForgotPasswordFragment : BaseFragment<FragmentForgotPasswordBinding>() {
                 }
             }
         })
+    }
+
+
+    private fun isEmptyField() : Boolean {
+        if (TextUtils.isEmpty(binding.etEmail.text.toString().trim())) {
+            showToast("Please enter email")
+            return false
+        }
+           return true
     }
 
 }

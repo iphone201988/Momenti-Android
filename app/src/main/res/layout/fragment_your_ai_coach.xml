@@ -54,6 +54,7 @@
             android:id="@+id/ivNotification"
             android:layout_width="@dimen/_34sdp"
             android:layout_height="@dimen/_34sdp"
+            android:onClick="@{v -> vm.onClick(v)}"
             android:src="@drawable/iv_notification_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/ivBack"

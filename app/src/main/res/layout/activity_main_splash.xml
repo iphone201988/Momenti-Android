@@ -60,16 +60,33 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/des"
-            style="@style/TextView_400_Regular"
+            style="@style/Textview_Regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/gray"
             android:textSize="@dimen/_14ssp"
+            android:gravity="center"
             android:layout_marginTop="@dimen/_10sdp"
             android:text="@string/your_daily_growth_one_step_at_a_time"
             app:layout_constraintTop_toBottomOf="@id/appName"
             app:layout_constraintStart_toStartOf="@id/appName"
             app:layout_constraintEnd_toEndOf="@id/appName"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/subDes"
+            style="@style/Textview_Regular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_12ssp"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:gravity="center"
+            android:text="@string/a_simple_powerful_tool_to_help_focus_on_what_matters_take_meaningful_action_and_appreciate_the_life_you_re_living"
+            android:textColor="@color/white"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintTop_toBottomOf="@id/des"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

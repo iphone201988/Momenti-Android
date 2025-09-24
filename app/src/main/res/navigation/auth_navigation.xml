@@ -51,4 +51,26 @@
         android:name="com.tech.momenti.ui.auth.signup.PasswordChangedFragment"
         tools:layout="@layout/fragment_password_changed"/>
 
+    <fragment
+        android:id="@+id/fragmentFirstOnboarding"
+        android:name="com.tech.momenti.ui.onboarding.FirstOnboardingFragment"
+        tools:layout="@layout/fragment_first_onboarding"/>
+
+    <fragment
+        android:id="@+id/fragmentMainOnboarding"
+        android:name="com.tech.momenti.ui.onboarding.MainOnboardingFragment"
+        tools:layout="@layout/fragment_main_onboarding"/>
+
+    <fragment
+        android:id="@+id/fragmentChoosePlan"
+        android:name="com.tech.momenti.ui.choose_plans.ChoosePlanFragment"
+        tools:layout="@layout/fragment_choose_plan"/>
+
+    <fragment
+        android:id="@+id/fragmentLifeArea"
+        android:name="com.tech.momenti.ui.life_areas.LifeAreaFragment"
+        tools:layout="@layout/fragment_life_area"/>
+
+
+
 </navigation>

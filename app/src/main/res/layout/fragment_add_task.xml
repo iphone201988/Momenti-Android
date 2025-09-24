@@ -88,7 +88,7 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/etFocusArea"
-            style="@style/TextView_400_Regular"
+            style="@style/Textview_Regular"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_42sdp"
             android:layout_marginTop="@dimen/_30sdp"
@@ -96,6 +96,8 @@
             android:gravity="start|center"
             android:textSize="@dimen/_14ssp"
             android:hint="Focus Area"
+            android:onClick="@{v -> vm.onClick(v)}"
+            android:focusable="false"
             android:layout_marginHorizontal="@dimen/_20sdp"
             android:paddingHorizontal="@dimen/_10sdp"
             android:singleLine="true"
@@ -113,7 +115,24 @@
             app:layout_constraintBottom_toBottomOf="@id/etFocusArea"
             app:layout_constraintEnd_toEndOf="@id/etFocusArea"/>
 
-        <ImageView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvFocusAreas"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
+            android:elevation="@dimen/_5sdp"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@drawable/radius_border_gray"
+            tools:listitem="@layout/item_layout_focus_area"
+            app:layout_constraintTop_toBottomOf="@id/etFocusArea"
+            app:layout_constraintStart_toStartOf="@id/etFocusArea"
+            app:layout_constraintEnd_toEndOf="@id/etFocusArea"/>
+
+
+
+         <ImageView
             android:id="@+id/imageOne"
             android:layout_width="@dimen/_28sdp"
             android:layout_height="@dimen/_28sdp"

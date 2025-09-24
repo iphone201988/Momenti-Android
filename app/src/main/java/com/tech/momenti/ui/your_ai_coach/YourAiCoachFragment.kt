@@ -1,5 +1,6 @@
 package com.tech.momenti.ui.your_ai_coach
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
@@ -10,11 +11,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.tech.momenti.R
 import com.tech.momenti.base.BaseFragment
 import com.tech.momenti.base.BaseViewModel
 import com.tech.momenti.data.CategoryProgress
 import com.tech.momenti.databinding.FragmentYourAiCoachBinding
+import com.tech.momenti.ui.common_activity.CommonActivity
 import com.tech.momenti.ui.home_screen.insights.ProgressAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -54,7 +57,24 @@ class YourAiCoachFragment : BaseFragment<FragmentYourAiCoachBinding>() {
         )
 
         binding.description.text = spannable
+        initOnClick()
         initAdapter()
+    }
+
+    private fun initOnClick() {
+        viewModel.onClick.observe(viewLifecycleOwner , Observer {
+            when(it?.id){
+                R.id.ivBack ->{
+                    requireActivity().onBackPressedDispatcher.onBackPressed()
+                }
+                R.id.ivNotification ->{
+                    val intent= Intent(requireContext(), CommonActivity::class.java)
+                    intent.putExtra("from","notification")
+
+                    startActivity(intent)
+                }
+            }
+        })
     }
 
     private fun initAdapter() {

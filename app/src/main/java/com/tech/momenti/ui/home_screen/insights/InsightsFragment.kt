@@ -44,6 +44,12 @@ class InsightsFragment : BaseFragment<FragmentInsightsBinding>() {
 
                     startActivity(intent)
                 }
+                R.id.ivNotification ->{
+                    val intent= Intent(requireContext(), CommonActivity::class.java)
+                    intent.putExtra("from","notification")
+
+                    startActivity(intent)
+                }
             }
         })
     }

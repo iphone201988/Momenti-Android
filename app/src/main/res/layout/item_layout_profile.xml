@@ -24,7 +24,16 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_50sdp"
         android:onClick="@{v -> callback.onItemClick(v,bean,pos)}">
-        
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/view_line"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/icons"
             setIcon="@{bean.icon}"

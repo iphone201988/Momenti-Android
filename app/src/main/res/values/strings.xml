@@ -10,7 +10,7 @@
     <string name="click_me">Click Me</string>
     <string name="android_base_2025">Android Base 2025</string>
     <string name="todo">TODO</string>
-    <string name="your_daily_growth_one_step_at_a_time">Your Daily Growth, \nOne Step at a Time</string>
+    <string name="your_daily_growth_one_step_at_a_time">Your Daily Guide to Living With \nPurpose &amp; Presence</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="momenti">MOMENTI</string>
@@ -48,4 +48,14 @@
     <string name="add_to_tomorrow_s_power_list">Add to Tomorrow’s \nPower List</string>
     <string name="health_seem_low_this_week_suggestion_add_a_10_min_walk_tomorrow">Health seem low this week. \nSuggestion: Add a 10-min walk tomorrow?</string>
     <string name="notification">Notification</string>
+    <string name="select_date">Select date</string>
+    <string name="a_simple_powerful_tool_to_help_focus_on_what_matters_take_meaningful_action_and_appreciate_the_life_you_re_living">A simple, powerful tool to help focus on what matters, take meaningful action, and appreciate the life you’re living.</string>
+    <string name="next">Next</string>
+    <string name="best_balance_of_value_commitment"><![CDATA[Best balance of value & commitment.]]></string>
+    <string name="stay_consistent_with_simple_monthly_access">Stay consistent with simple monthly access.</string>
+    <string name="annual">Annual</string>
+    <string name="monthly">Monthly</string>
+    <string name="own_momenti_forever_with_one_payment">Own Momenti forever with one payment.</string>
+    <string name="by_tagging_each_task_with_a_life_area_you_ll_see_where_your_energy_goes_and_spot_where_balance_is_missing">By tagging each task with a Life Area, you’ll see where your energy goes — and spot where balance is missing.</string>
+    <string name="focus_on_what_matters_most_the_actions_that_will_move_you_forward">Focus on what matters most — the actions that will move you forward.</string>
 </resources>

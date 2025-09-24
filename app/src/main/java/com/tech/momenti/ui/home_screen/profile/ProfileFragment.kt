@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.tech.momenti.BR
 import com.tech.momenti.R
 import com.tech.momenti.base.BaseFragment
@@ -32,7 +33,21 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
     override fun onCreateView(view: View) {
         getProfileList()
+        initOnClick()
         initAdapter()
+    }
+
+    private fun initOnClick() {
+        viewModel.onClick.observe(viewLifecycleOwner, Observer {
+            when(it?.id){
+                R.id.ivNotification ->{
+                    val intent= Intent(requireContext(), CommonActivity::class.java)
+                    intent.putExtra("from","notification")
+
+                    startActivity(intent)
+                }
+            }
+        })
     }
 
     private fun initAdapter() {

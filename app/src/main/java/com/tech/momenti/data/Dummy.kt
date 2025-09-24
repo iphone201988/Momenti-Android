@@ -45,3 +45,16 @@ data class NotificationData(
     var notification : String,
     var time : String
 )
+
+data class Gratitude(
+    var gratitude : String,
+    var date: String
+)
+
+data class FocusArea(
+    var focus : String
+)
+
+data class Onboarding(
+    var title : String
+)

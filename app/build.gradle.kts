@@ -75,6 +75,13 @@ dependencies {
     //circular progress bar
         implementation ("com.mikhaellopez:circularprogressbar:3.1.0")
 
+
+    // calender
+    implementation ("com.applandeo:material-calendar-view:1.9.2")
+
+    //Dot indicator
+    implementation("com.tbuonomo:dotsindicator:4.3")
+
     //swipe layout
   //  implementation ("com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1")
 }
