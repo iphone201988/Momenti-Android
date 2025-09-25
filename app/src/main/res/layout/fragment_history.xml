@@ -143,6 +143,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:visibility="gone"
+                    tools:listitem="@layout/item_layout_gratitude"
                     android:layout_marginTop="@dimen/_15sdp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/tvTasks"

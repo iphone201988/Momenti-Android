@@ -37,4 +37,14 @@
         android:name="com.tech.momenti.ui.notification.NotificationFragment"
         tools:layout="@layout/fragment_notification"/>
 
+    <fragment
+        android:id="@+id/fragmentAddGratitude"
+        android:name="com.tech.momenti.ui.add_gratitude.AddGratitudeFragment"
+        tools:layout="@layout/fragment_add_gratitude"/>
+
+    <fragment
+        android:id="@+id/fragmentSubscription"
+        android:name="com.tech.momenti.ui.subscription.SubscriptionFragment"
+        tools:layout="@layout/fragment_subscription"/>
+
 </navigation>

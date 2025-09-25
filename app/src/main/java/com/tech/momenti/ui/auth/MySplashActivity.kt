@@ -48,7 +48,7 @@ class MySplashActivity : BaseActivity<ActivityMySplashBinding>() {
             lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 navController.graph =
                     navController.navInflater.inflate(R.navigation.auth_navigation).apply {
-                    setStartDestination(R.id.fragmentDailyTask)
+                    setStartDestination(R.id.fragmentLogin)
 
                     }
             }

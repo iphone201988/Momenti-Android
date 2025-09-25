@@ -74,6 +74,14 @@ class CommonActivity : BaseActivity<ActivityCommonBinding>() {
                                 "notification" ->{
                                     setStartDestination(R.id.fragmentNotification)
                                 }
+                                "addGratitude" ->{
+                                    setStartDestination(R.id.fragmentAddGratitude)
+
+                                }
+                                "purchasePlan" ->{
+                                    setStartDestination(R.id.fragmentSubscription)
+
+                                }
                             }
                             navController.setGraph(this, bundle)
                         }

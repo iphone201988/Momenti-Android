@@ -46,10 +46,7 @@ data class NotificationData(
     var time : String
 )
 
-data class Gratitude(
-    var gratitude : String,
-    var date: String
-)
+
 
 data class FocusArea(
     var focus : String
@@ -57,4 +54,16 @@ data class FocusArea(
 
 data class Onboarding(
     var title : String
+)
+
+
+data class GratitudeHistory(
+    var date : String,
+    var tasks : List<Gratitude>,
+    var isExpanded: Boolean = false
+)
+
+data class  Gratitude(
+    var gratitude : String,
+    var count : Int,
 )

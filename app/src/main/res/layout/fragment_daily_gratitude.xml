@@ -64,12 +64,22 @@
         android:textColor="@color/gray"
         android:gravity="center"
         android:layout_marginTop="@dimen/_5sdp"
-        android:text="@string/take_a_moment_to_reflect_on_the_good_today"
+        android:text="List 3–5 things you’re grateful for today."
         app:layout_constraintTop_toBottomOf="@id/dailyGratitude"
         app:layout_constraintStart_toStartOf="@id/dailyGratitude"
         app:layout_constraintEnd_toEndOf="@id/dailyGratitude"/>
 
-
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvMinimumRequired"
+            style="@style/Textview_Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/gray"
+            android:text="(Minimum 3 required to WIN today!) "
+            app:layout_constraintTop_toBottomOf="@id/des"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/consMain"
         android:background="@drawable/card_bg"
@@ -82,95 +92,342 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        
-        
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/whatAreYou"
-            style="@style/TextView_500_Medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="What are you grateful for today?"
-            android:textSize="@dimen/_16ssp"
-            android:layout_marginTop="@dimen/_30sdp"
-            android:layout_marginStart="@dimen/_20sdp"
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fitsSystemWindows="true"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/etGratitude"
-            style="@style/TextView_400_Regular"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_170sdp"
-            android:layout_marginHorizontal="@dimen/_20sdp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/radius_border_gray"
-            android:gravity="start"
-            android:hint="Enter here..."
-            android:padding="@dimen/_10sdp"
-            android:paddingHorizontal="@dimen/_10sdp"
-            android:textColorHint="@color/gray"
-            android:textSize="@dimen/_14ssp"
-            app:layout_constraintEnd_toEndOf="@id/whatAreYou"
-            app:layout_constraintStart_toStartOf="@id/whatAreYou"
-            app:layout_constraintTop_toBottomOf="@id/whatAreYou" />
-
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/saveBtn"
-            style="@style/Textview_Regular"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginHorizontal="@dimen/_20sdp"
-            android:background="@drawable/button_bg"
-            android:gravity="center"
-            android:padding="@dimen/_10sdp"
-            android:onClick="@{v -> vm.onClick(v)}"
-            android:text="Save &amp; Continue"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_14ssp"
-            app:layout_constraintEnd_toEndOf="@id/etGratitude"
-            app:layout_constraintStart_toStartOf="@id/etGratitude"
-            app:layout_constraintTop_toBottomOf="@id/etGratitude" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/consBottom"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_30sdp"
-            android:background="@drawable/bottom_bg"
-            android:layout_marginHorizontal="@dimen/_20sdp"
             android:layout_marginBottom="@dimen/_10sdp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/etGratitude"
-            app:layout_constraintEnd_toEndOf="@id/etGratitude">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-            <ImageView
-                android:id="@+id/bulb"
-                android:layout_width="@dimen/_12sdp"
-                android:layout_height="@dimen/_12sdp"
-                android:src="@drawable/iv_bulb"
-                android:layout_marginStart="@dimen/_10sdp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/text"
-                style="@style/TextView_400_Regular"
+                android:id="@+id/whatAreYou"
+                style="@style/TextView_Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="What are you grateful for today?"
+                android:textSize="@dimen/_16ssp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            
+            
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/consOne"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:paddingVertical="@dimen/_5sdp"
+                app:layout_constraintTop_toBottomOf="@id/whatAreYou"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvOne"
+                    style="@style/Textview_Regular"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:text="1"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_16ssp"
+                    android:gravity="center"
+                    android:background="@drawable/bg_count_gratitude"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etAddGratitudeOne"
+                    style="@style/TextView_400_Regular"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_70sdp"
+                    android:background="@drawable/radius_border_gray"
+                    android:gravity="start|top"
+                    android:textSize="@dimen/_14ssp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:hint="Enter here..."
+                    android:paddingVertical="@dimen/_5sdp"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:textColorHint="@color/gray"
+                    app:layout_constraintTop_toTopOf="@id/tvOne"
+                    app:layout_constraintStart_toEndOf="@id/tvOne"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/consTwo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/_12ssp"
-                android:text="Gratitude helps shift focus to positivity. "
-                android:textColor="@color/app_black"
-                android:layout_marginStart="@dimen/_5sdp"
-                app:layout_constraintStart_toEndOf="@id/bulb"
-                app:layout_constraintTop_toTopOf="@id/bulb"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="@id/bulb"/>
+                android:layout_marginTop="@dimen/_10sdp"
+                android:paddingVertical="@dimen/_5sdp"
+                app:layout_constraintTop_toBottomOf="@id/consOne"
+                app:layout_constraintStart_toStartOf="@id/consOne"
+                app:layout_constraintEnd_toEndOf="@id/consOne">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTwo"
+                    style="@style/Textview_Regular"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:text="2"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_16ssp"
+                    android:gravity="center"
+                    android:background="@drawable/bg_count_gratitude"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etAddGratitudeTwo"
+                    style="@style/TextView_400_Regular"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_70sdp"
+                    android:background="@drawable/radius_border_gray"
+                    android:gravity="start|top"
+                    android:textSize="@dimen/_14ssp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:hint="Enter here..."
+                    android:paddingVertical="@dimen/_5sdp"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:textColorHint="@color/gray"
+                    app:layout_constraintTop_toTopOf="@id/tvTwo"
+                    app:layout_constraintStart_toEndOf="@id/tvTwo"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/consThree"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:paddingVertical="@dimen/_5sdp"
+                app:layout_constraintTop_toBottomOf="@id/consTwo"
+                app:layout_constraintStart_toStartOf="@id/consTwo"
+                app:layout_constraintEnd_toEndOf="@id/consTwo">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvThree"
+                    style="@style/Textview_Regular"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:text="3"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_16ssp"
+                    android:gravity="center"
+                    android:background="@drawable/bg_count_gratitude"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etAddGratitudeThree"
+                    style="@style/TextView_400_Regular"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_70sdp"
+                    android:background="@drawable/radius_border_gray"
+                    android:gravity="start|top"
+                    android:textSize="@dimen/_14ssp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:hint="Enter here..."
+                    android:paddingVertical="@dimen/_5sdp"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:textColorHint="@color/gray"
+                    app:layout_constraintTop_toTopOf="@id/tvThree"
+                    app:layout_constraintStart_toEndOf="@id/tvThree"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/consFour"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:paddingVertical="@dimen/_5sdp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/consThree"
+                app:layout_constraintStart_toStartOf="@id/consThree"
+                app:layout_constraintEnd_toEndOf="@id/consThree">
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvFour"
+                    style="@style/Textview_Regular"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:text="4"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_16ssp"
+                    android:gravity="center"
+                    android:background="@drawable/bg_count_gratitude"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etAddGratitudeFour"
+                    style="@style/TextView_400_Regular"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_70sdp"
+                    android:background="@drawable/radius_border_gray"
+                    android:gravity="start|top"
+                    android:textSize="@dimen/_14ssp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:hint="Enter here..."
+                    android:paddingVertical="@dimen/_5sdp"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:textColorHint="@color/gray"
+                    app:layout_constraintTop_toTopOf="@id/tvFour"
+                    app:layout_constraintStart_toEndOf="@id/tvFour"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/consFive"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:paddingVertical="@dimen/_5sdp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/consFour"
+                app:layout_constraintStart_toStartOf="@id/consFour"
+                app:layout_constraintEnd_toEndOf="@id/consFour">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvFive"
+                    style="@style/Textview_Regular"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:text="5"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_16ssp"
+                    android:gravity="center"
+                    android:background="@drawable/bg_count_gratitude"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etAddGratitudeFive"
+                    style="@style/TextView_400_Regular"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_70sdp"
+                    android:background="@drawable/radius_border_gray"
+                    android:gravity="start|top"
+                    android:textSize="@dimen/_14ssp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:hint="Enter here..."
+                    android:paddingVertical="@dimen/_5sdp"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:textColorHint="@color/gray"
+                    app:layout_constraintTop_toTopOf="@id/tvFive"
+                    app:layout_constraintStart_toEndOf="@id/tvFive"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvAddGratitude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+ Add Gratitude 4"
+                android:background="@drawable/button_bg"
+                android:textColor="@color/white"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:paddingVertical="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center"
+                android:onClick="@{v -> vm.onClick(v)}"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintTop_toBottomOf="@id/consFive"
+                app:layout_constraintEnd_toEndOf="@id/consThree"/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/saveBtn"
+                android:layout_width="0dp"
+                style="@style/Textview_Regular"
+                android:layout_height="wrap_content"
+                android:text="Save &amp; Continue"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:textSize="@dimen/_14ssp"
+                android:textColor="@color/white"
+                android:padding="@dimen/_10sdp"
+                android:gravity="center"
+                android:onClick="@{v -> vm.onClick(v)}"
+                android:background="@drawable/button_bg"
+                app:layout_constraintStart_toStartOf="@id/consThree"
+                app:layout_constraintEnd_toEndOf="@id/consThree"
+                app:layout_constraintTop_toBottomOf="@id/tvAddGratitude"/>
+
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/consBottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bottom_bg"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:paddingVertical="@dimen/_5sdp"
+                app:layout_constraintTop_toBottomOf="@id/saveBtn"
+                app:layout_constraintStart_toStartOf="@id/saveBtn"
+                app:layout_constraintEnd_toEndOf="@id/saveBtn">
+
+                <ImageView
+                    android:id="@+id/bulb"
+                    android:layout_width="@dimen/_12sdp"
+                    android:layout_height="@dimen/_12sdp"
+                    android:src="@drawable/iv_bulb"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text"
+                    style="@style/TextView_400_Regular"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_12ssp"
+                    android:text="This helps you slow down, notice the good, and end the day with perspective."
+                    android:textColor="@color/app_black"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    app:layout_constraintStart_toEndOf="@id/bulb"
+                    app:layout_constraintTop_toTopOf="@id/bulb"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+
+
+
+
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -178,3 +435,41 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
+
+
+<!--<androidx.appcompat.widget.AppCompatEditText-->
+<!--android:id="@+id/etGratitude"-->
+<!--style="@style/TextView_400_Regular"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="@dimen/_170sdp"-->
+<!--android:layout_marginHorizontal="@dimen/_20sdp"-->
+<!--android:layout_marginTop="12dp"-->
+<!--android:background="@drawable/radius_border_gray"-->
+<!--android:gravity="start"-->
+<!--android:hint="Enter here..."-->
+<!--android:padding="@dimen/_10sdp"-->
+<!--android:paddingHorizontal="@dimen/_10sdp"-->
+<!--android:textColorHint="@color/gray"-->
+<!--android:textSize="@dimen/_14ssp"-->
+<!--app:layout_constraintEnd_toEndOf="@id/whatAreYou"-->
+<!--app:layout_constraintStart_toStartOf="@id/whatAreYou"-->
+<!--app:layout_constraintTop_toBottomOf="@id/whatAreYou" />-->
+
+
+<!--<androidx.appcompat.widget.AppCompatTextView-->
+<!--android:id="@+id/saveBtn"-->
+<!--style="@style/Textview_Regular"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:layout_marginTop="@dimen/_20sdp"-->
+<!--android:layout_marginHorizontal="@dimen/_20sdp"-->
+<!--android:background="@drawable/button_bg"-->
+<!--android:gravity="center"-->
+<!--android:padding="@dimen/_10sdp"-->
+<!--android:onClick="@{v -> vm.onClick(v)}"-->
+<!--android:text="Save &amp; Continue"-->
+<!--android:textColor="@color/white"-->
+<!--android:textSize="@dimen/_14ssp"-->
+<!--app:layout_constraintEnd_toEndOf="@id/etGratitude"-->
+<!--app:layout_constraintStart_toStartOf="@id/etGratitude"-->
+<!--app:layout_constraintTop_toBottomOf="@id/etGratitude" />-->

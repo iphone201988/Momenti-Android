@@ -66,6 +66,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), DaysAdapter.DayListene
 
                     startActivity(intent)
                 }
+                R.id.addBtn ->{
+                    val intent= Intent(requireContext(), CommonActivity::class.java)
+                    intent.putExtra("from","addGratitude")
+
+                    startActivity(intent)
+                }
+
             }
         })
     }

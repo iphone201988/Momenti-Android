@@ -295,40 +295,60 @@
 
 
 
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/etGratitude"
-                        style="@style/TextView_400_Regular"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_140sdp"
-                        android:layout_marginTop="12dp"
-                        android:background="@drawable/bg_item_view"
-                        android:gravity="start"
-                        android:hint="I am grateful for..."
-                        android:padding="@dimen/_10sdp"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:background="@drawable/bg_gradient_yellow"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:paddingHorizontal="@dimen/_10sdp"
-                        android:textColorHint="@color/gray"
-                        android:textSize="@dimen/_14ssp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvGratitude" />
+                        android:paddingVertical="@dimen/_12ssp"
+                        app:layout_constraintStart_toStartOf="@id/tvGratitude"
+                        app:layout_constraintEnd_toEndOf="@id/viewAll"
+                        app:layout_constraintTop_toBottomOf="@id/tvGratitude">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvWhatGratefulToday"
+                            style="@style/TextView_500_Medium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/_14ssp"
+                            android:textColor="@color/app_black"
+                            android:text="@string/what_are_you_grateful_for_today"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"/>
 
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/listThings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_6sdp"
+                            android:text="@string/list_3_5_things_you_re_grateful_for_today"
+                            android:textColor="@color/gray"
+                            app:layout_constraintTop_toBottomOf="@id/tvWhatGratefulToday"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/addBtn"
                         style="@style/Textview_Regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Add"
+                        android:onClick="@{v -> vm.onClick(v)}"
                         android:paddingHorizontal="@dimen/_10sdp"
                         android:paddingVertical="@dimen/_5sdp"
                         android:textSize="@dimen/_14ssp"
-                        android:layout_marginEnd="@dimen/_10sdp"
-                        android:layout_marginBottom="@dimen/_10sdp"
                         android:background="@drawable/date_bg"
                         android:backgroundTint="@color/app_black"
                         android:textColor="@color/white"
-                        app:layout_constraintBottom_toBottomOf="@id/etGratitude"
-                        app:layout_constraintEnd_toEndOf="@id/etGratitude"/>
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -416,3 +436,38 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
+
+<!--<androidx.appcompat.widget.AppCompatEditText-->
+<!--android:id="@+id/etGratitude"-->
+<!--style="@style/TextView_400_Regular"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="@dimen/_140sdp"-->
+<!--android:layout_marginTop="12dp"-->
+<!--android:background="@drawable/bg_item_view"-->
+<!--android:gravity="start"-->
+<!--android:hint="I am grateful for..."-->
+<!--android:padding="@dimen/_10sdp"-->
+<!--android:paddingHorizontal="@dimen/_10sdp"-->
+<!--android:textColorHint="@color/gray"-->
+<!--android:textSize="@dimen/_14ssp"-->
+<!--app:layout_constraintEnd_toEndOf="parent"-->
+<!--app:layout_constraintStart_toStartOf="parent"-->
+<!--app:layout_constraintTop_toBottomOf="@id/tvGratitude" />-->
+
+
+<!--<androidx.appcompat.widget.AppCompatTextView-->
+<!--android:id="@+id/addBtn"-->
+<!--style="@style/Textview_Regular"-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:text="Add"-->
+<!--android:paddingHorizontal="@dimen/_10sdp"-->
+<!--android:paddingVertical="@dimen/_5sdp"-->
+<!--android:textSize="@dimen/_14ssp"-->
+<!--android:layout_marginEnd="@dimen/_10sdp"-->
+<!--android:layout_marginBottom="@dimen/_10sdp"-->
+<!--android:background="@drawable/date_bg"-->
+<!--android:backgroundTint="@color/app_black"-->
+<!--android:textColor="@color/white"-->
+<!--app:layout_constraintBottom_toBottomOf="@id/etGratitude"-->
+<!--app:layout_constraintEnd_toEndOf="@id/etGratitude"/>-->

@@ -19,8 +19,11 @@ import com.tech.momenti.R
 import com.google.android.material.imageview.ShapeableImageView
 import com.tech.momenti.BR
 import com.tech.momenti.base.SimpleRecyclerViewAdapter
+import com.tech.momenti.data.Gratitude
 import com.tech.momenti.data.NotificationData
 import com.tech.momenti.data.TaskData
+import com.tech.momenti.databinding.ItemLayoutGratitudeBinding
+import com.tech.momenti.databinding.ItemLayoutGratitudeDataBinding
 import com.tech.momenti.databinding.ItemLayoutNotificationDataBinding
 import com.tech.momenti.databinding.ItemLayoutSwipeBinding
 
@@ -130,7 +133,26 @@ object BindingUtils {
 
     }
 
+    @BindingAdapter("childHistoryGratitudeAdapter")
+    @JvmStatic
+    fun childHistoryGratitudeAdapter(view : RecyclerView, tasks : List<Gratitude>?){
 
+        // Create and set a LayoutManager for the inner RecyclerView
+        val layoutManager = LinearLayoutManager(view.context)
+        view.layoutManager = layoutManager
+        val context = view.context
+        val taskAdapter = SimpleRecyclerViewAdapter<Gratitude, ItemLayoutGratitudeDataBinding>(R.layout.item_layout_gratitude_data,BR.bean){ v, m, pos ->
+            when(v.id){
+                R.id.consMain ->{
+
+                }
+            }
+        }
+        view.adapter = taskAdapter
+        taskAdapter.list = tasks
+        taskAdapter.notifyDataSetChanged()
+
+    }
     @BindingAdapter("childNotificationAdapter")
     @JvmStatic
     fun childNotificationAdapter(view : RecyclerView, notification : List<NotificationData>?){

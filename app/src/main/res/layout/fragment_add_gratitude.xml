@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.tech.momenti.ui.add_gratitude.AddGratitudeVm" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.add_gratitude.AddGratitudeFragment">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="@dimen/_26sdp"
+            android:layout_height="@dimen/_26sdp"
+            android:src="@drawable/iv_back"
+            android:onClick="@{v -> vm.onClick(v)}"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_50sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/heading"
+            style="@style/TextView_400_Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Gratitude"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintTop_toTopOf="@id/ivBack"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/ivBack"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivNotification"
+            android:layout_width="@dimen/_34sdp"
+            android:layout_height="@dimen/_34sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:src="@drawable/iv_notification_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ivBack"
+            app:layout_constraintBottom_toBottomOf="@id/ivBack"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:fitsSystemWindows="true"
+        android:fillViewport="true"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        app:layout_constraintTop_toBottomOf="@id/ivBack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/saveBtn"
+        app:layout_constraintEnd_toEndOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAddGratitudeFor"
+            style="@style/TextView_400_Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Gratitude for"
+            android:textSize="@dimen/_18ssp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+          />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/date"
+            style="@style/TextView_SemiBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="16, Feb 2025"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:textColor="@color/yellow"
+            app:layout_constraintTop_toBottomOf="@id/tvAddGratitudeFor"
+            app:layout_constraintStart_toStartOf="@id/tvAddGratitudeFor"/>
+
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/consOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintTop_toBottomOf="@id/date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvOne"
+                style="@style/Textview_Regular"
+                android:layout_width="@dimen/_28sdp"
+                android:layout_height="@dimen/_28sdp"
+                android:text="1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16ssp"
+                android:gravity="center"
+                android:background="@drawable/bg_count_gratitude"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etAddGratitudeOne"
+                style="@style/TextView_400_Regular"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_70sdp"
+                android:background="@drawable/radius_border_gray"
+                android:gravity="start|top"
+                android:textSize="@dimen/_14ssp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:hint="Enter here..."
+                android:paddingVertical="@dimen/_5sdp"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:textColorHint="@color/gray"
+                app:layout_constraintTop_toTopOf="@id/tvOne"
+                app:layout_constraintStart_toEndOf="@id/tvOne"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/consTwo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintTop_toBottomOf="@id/consOne"
+            app:layout_constraintStart_toStartOf="@id/consOne"
+            app:layout_constraintEnd_toEndOf="@id/consOne">
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTwo"
+                style="@style/Textview_Regular"
+                android:layout_width="@dimen/_28sdp"
+                android:layout_height="@dimen/_28sdp"
+                android:text="2"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16ssp"
+                android:gravity="center"
+                android:background="@drawable/bg_count_gratitude"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etAddGratitudeTwo"
+                style="@style/TextView_400_Regular"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_70sdp"
+                android:background="@drawable/radius_border_gray"
+                android:gravity="start|top"
+                android:textSize="@dimen/_14ssp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:hint="Enter here..."
+                android:paddingVertical="@dimen/_5sdp"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:textColorHint="@color/gray"
+                app:layout_constraintTop_toTopOf="@id/tvTwo"
+                app:layout_constraintStart_toEndOf="@id/tvTwo"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/consThree"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintTop_toBottomOf="@id/consTwo"
+            app:layout_constraintStart_toStartOf="@id/consTwo"
+            app:layout_constraintEnd_toEndOf="@id/consTwo">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvThree"
+                style="@style/Textview_Regular"
+                android:layout_width="@dimen/_28sdp"
+                android:layout_height="@dimen/_28sdp"
+                android:text="3"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16ssp"
+                android:gravity="center"
+                android:background="@drawable/bg_count_gratitude"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etAddGratitudeThree"
+                style="@style/TextView_400_Regular"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_70sdp"
+                android:background="@drawable/radius_border_gray"
+                android:gravity="start|top"
+                android:textSize="@dimen/_14ssp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:hint="Enter here..."
+                android:paddingVertical="@dimen/_5sdp"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:textColorHint="@color/gray"
+                app:layout_constraintTop_toTopOf="@id/tvThree"
+                app:layout_constraintStart_toEndOf="@id/tvThree"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/consFour"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/consThree"
+            app:layout_constraintStart_toStartOf="@id/consThree"
+            app:layout_constraintEnd_toEndOf="@id/consThree">
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFour"
+                style="@style/Textview_Regular"
+                android:layout_width="@dimen/_28sdp"
+                android:layout_height="@dimen/_28sdp"
+                android:text="4"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16ssp"
+                android:gravity="center"
+                android:background="@drawable/bg_count_gratitude"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etAddGratitudeFour"
+                style="@style/TextView_400_Regular"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_70sdp"
+                android:background="@drawable/radius_border_gray"
+                android:gravity="start|top"
+                android:textSize="@dimen/_14ssp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:hint="Enter here..."
+                android:paddingVertical="@dimen/_5sdp"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:textColorHint="@color/gray"
+                app:layout_constraintTop_toTopOf="@id/tvFour"
+                app:layout_constraintStart_toEndOf="@id/tvFour"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/consFive"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/consFour"
+            app:layout_constraintStart_toStartOf="@id/consFour"
+            app:layout_constraintEnd_toEndOf="@id/consFour">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFive"
+                style="@style/Textview_Regular"
+                android:layout_width="@dimen/_28sdp"
+                android:layout_height="@dimen/_28sdp"
+                android:text="5"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16ssp"
+                android:gravity="center"
+                android:background="@drawable/bg_count_gratitude"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etAddGratitudeFive"
+                style="@style/TextView_400_Regular"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_70sdp"
+                android:background="@drawable/radius_border_gray"
+                android:gravity="start|top"
+                android:textSize="@dimen/_14ssp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:hint="Enter here..."
+                android:paddingVertical="@dimen/_5sdp"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:textColorHint="@color/gray"
+                app:layout_constraintTop_toTopOf="@id/tvFive"
+                app:layout_constraintStart_toEndOf="@id/tvFive"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAddGratitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+ Add Gratitude 4"
+            android:background="@drawable/button_bg"
+            android:textColor="@color/white"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:paddingVertical="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
+            android:onClick="@{v -> vm.onClick(v)}"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintTop_toBottomOf="@id/consFive"
+            app:layout_constraintEnd_toEndOf="@id/consThree"/>
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/saveBtn"
+            android:layout_width="0dp"
+            style="@style/Textview_Regular"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:textSize="@dimen/_14ssp"
+            android:textColor="@color/white"
+            android:padding="@dimen/_10sdp"
+            android:gravity="center"
+            android:onClick="@{v -> vm.onClick(v)}"
+            android:background="@drawable/button_bg"
+            app:layout_constraintStart_toStartOf="@id/consBottom"
+            app:layout_constraintEnd_toEndOf="@id/consBottom"
+            app:layout_constraintBottom_toTopOf="@id/consBottom"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/consBottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bottom_bg"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:paddingVertical="@dimen/_5sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/bulb"
+                android:layout_width="@dimen/_12sdp"
+                android:layout_height="@dimen/_12sdp"
+                android:src="@drawable/iv_bulb"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text"
+                style="@style/TextView_400_Regular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_12ssp"
+                android:text="This helps you slow down, notice the good, and end the day with perspective."
+                android:textColor="@color/app_black"
+                android:layout_marginStart="@dimen/_5sdp"
+                app:layout_constraintStart_toEndOf="@id/bulb"
+                app:layout_constraintTop_toTopOf="@id/bulb"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

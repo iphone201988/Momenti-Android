@@ -61,312 +61,515 @@
             app:layout_constraintTop_toTopOf="@id/ivBack"
             app:layout_constraintBottom_toBottomOf="@id/ivBack"/>
 
-        
-        
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvAddTaskFor"
-            style="@style/TextView_400_Regular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add Task for"
-            android:textSize="@dimen/_18ssp"
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:fitsSystemWindows="true"
+            android:fillViewport="true"
+            android:layout_marginHorizontal="@dimen/_20sdp"
             app:layout_constraintTop_toBottomOf="@id/ivBack"
-            app:layout_constraintStart_toStartOf="@id/ivBack"
-            android:layout_marginTop="@dimen/_20sdp"/>
-        
-        
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/date"
-            style="@style/TextView_SemiBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="16, Feb 2025"
-            android:layout_marginTop="@dimen/_3sdp"
-            android:textColor="@color/yellow"
-            app:layout_constraintTop_toBottomOf="@id/tvAddTaskFor"
-            app:layout_constraintStart_toStartOf="@id/tvAddTaskFor"/>
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/etFocusArea"
-            style="@style/Textview_Regular"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_42sdp"
-            android:layout_marginTop="@dimen/_30sdp"
-            android:background="@drawable/radius_border_gray"
-            android:gravity="start|center"
-            android:textSize="@dimen/_14ssp"
-            android:hint="Focus Area"
-            android:onClick="@{v -> vm.onClick(v)}"
-            android:focusable="false"
-            android:layout_marginHorizontal="@dimen/_20sdp"
-            android:paddingHorizontal="@dimen/_10sdp"
-            android:singleLine="true"
-            android:textColorHint="@color/gray"
-            app:layout_constraintTop_toBottomOf="@id/date"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="@dimen/_14sdp"
-            android:layout_height="@dimen/_14sdp"
-            android:src="@drawable/iv_dorp_down"
-            android:layout_marginEnd="@dimen/_10sdp"
-            app:layout_constraintTop_toTopOf="@id/etFocusArea"
-            app:layout_constraintBottom_toBottomOf="@id/etFocusArea"
-            app:layout_constraintEnd_toEndOf="@id/etFocusArea"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvFocusAreas"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="vertical"
-            android:elevation="@dimen/_5sdp"
-            android:visibility="gone"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:background="@drawable/radius_border_gray"
-            tools:listitem="@layout/item_layout_focus_area"
-            app:layout_constraintTop_toBottomOf="@id/etFocusArea"
-            app:layout_constraintStart_toStartOf="@id/etFocusArea"
-            app:layout_constraintEnd_toEndOf="@id/etFocusArea"/>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvAddTaskFor"
+                    style="@style/TextView_400_Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add Task for"
+                    android:textSize="@dimen/_18ssp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="@dimen/_20sdp"/>
 
 
-
-         <ImageView
-            android:id="@+id/imageOne"
-            android:layout_width="@dimen/_28sdp"
-            android:layout_height="@dimen/_28sdp"
-            android:src="@drawable/iv_image_one"
-            android:layout_marginTop="@dimen/_20sdp"
-            app:layout_constraintTop_toBottomOf="@id/etFocusArea"
-            app:layout_constraintStart_toStartOf="@id/etFocusArea"/>
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/etAddTaskOne"
-            style="@style/TextView_400_Regular"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_42sdp"
-            android:background="@drawable/radius_border_gray"
-            android:gravity="start|center"
-            android:textSize="@dimen/_14ssp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:hint="Add task"
-            android:paddingHorizontal="@dimen/_10sdp"
-            android:singleLine="true"
-            android:textColorHint="@color/gray"
-            app:layout_constraintBottom_toBottomOf="@id/imageOne"
-            app:layout_constraintTop_toTopOf="@id/imageOne"
-            app:layout_constraintStart_toEndOf="@id/imageOne"
-            app:layout_constraintEnd_toEndOf="@id/etFocusArea"/>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/date"
+                    style="@style/TextView_SemiBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="16, Feb 2025"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:textColor="@color/yellow"
+                    app:layout_constraintTop_toBottomOf="@id/tvAddTaskFor"
+                    app:layout_constraintStart_toStartOf="@id/tvAddTaskFor"/>
 
 
 
-        <ImageView
-            android:id="@+id/imageTwo"
-            android:layout_width="@dimen/_28sdp"
-            android:layout_height="@dimen/_28sdp"
-            android:src="@drawable/iv_image_two"
-            android:layout_marginTop="@dimen/_20sdp"
-            app:layout_constraintTop_toBottomOf="@id/etAddTaskOne"
-            app:layout_constraintStart_toStartOf="@id/etFocusArea"/>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/consTaskOne"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:layout_constraintTop_toBottomOf="@id/date"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/etAddTaskTwo"
-            style="@style/TextView_400_Regular"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_42sdp"
-            android:background="@drawable/radius_border_gray"
-            android:gravity="start|center"
-            android:textSize="@dimen/_14ssp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:hint="Add task"
-            android:paddingHorizontal="@dimen/_10sdp"
-            android:singleLine="true"
-            android:textColorHint="@color/gray"
-            app:layout_constraintBottom_toBottomOf="@id/imageTwo"
-            app:layout_constraintTop_toTopOf="@id/imageTwo"
-            app:layout_constraintStart_toEndOf="@id/imageTwo"
-            app:layout_constraintEnd_toEndOf="@id/etAddTaskOne"/>
+                    <ImageView
+                        android:id="@+id/imageOne"
+                        android:layout_width="44dp"
+                        android:layout_height="34dp"
+                        android:src="@drawable/iv_image_one"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-
-        <ImageView
-            android:id="@+id/imageThree"
-            android:layout_width="@dimen/_28sdp"
-            android:layout_height="@dimen/_28sdp"
-            android:src="@drawable/iv_image_three"
-            android:layout_marginTop="@dimen/_20sdp"
-            app:layout_constraintTop_toBottomOf="@id/etAddTaskTwo"
-            app:layout_constraintStart_toStartOf="@id/etFocusArea"/>
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etAddTaskOne"
+                        style="@style/TextView_400_Regular"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_42sdp"
+                        android:background="@drawable/radius_border_gray"
+                        android:gravity="start|center"
+                        android:textSize="@dimen/_14ssp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:hint="Add task"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:singleLine="true"
+                        android:textColorHint="@color/gray"
+                        app:layout_constraintTop_toTopOf="@id/imageOne"
+                        app:layout_constraintStart_toEndOf="@id/imageOne"
+                        app:layout_constraintEnd_toEndOf="parent"/>
 
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/etAddTaskThree"
-            style="@style/TextView_400_Regular"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_42sdp"
-            android:background="@drawable/radius_border_gray"
-            android:gravity="start|center"
-            android:textSize="@dimen/_14ssp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:hint="Add task"
-            android:paddingHorizontal="@dimen/_10sdp"
-            android:singleLine="true"
-            android:textColorHint="@color/gray"
-            app:layout_constraintBottom_toBottomOf="@id/imageThree"
-            app:layout_constraintTop_toTopOf="@id/imageThree"
-            app:layout_constraintStart_toEndOf="@id/imageThree"
-            app:layout_constraintEnd_toEndOf="@id/etAddTaskOne"/>
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etLifeAreaOne"
+                        style="@style/Textview_Regular"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_42sdp"
+                        android:background="@drawable/radius_border_gray"
+                        android:gravity="start|center"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:textSize="@dimen/_14ssp"
+                        android:focusable="false"
+                        android:onClick="@{v -> vm.onClick(v)}"
+                        android:hint="Select Life Area for task 1"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:singleLine="true"
+                        android:textColorHint="@color/gray"
+                        app:layout_constraintTop_toBottomOf="@id/etAddTaskOne"
+                        app:layout_constraintStart_toStartOf="@id/etAddTaskOne"
+                        app:layout_constraintEnd_toEndOf="@id/etAddTaskOne"/>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/_14sdp"
+                        android:layout_height="@dimen/_14sdp"
+                        android:src="@drawable/iv_dorp_down"
+                        android:visibility="visible"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        app:layout_constraintTop_toTopOf="@id/etLifeAreaOne"
+                        app:layout_constraintBottom_toBottomOf="@id/etLifeAreaOne"
+                        app:layout_constraintEnd_toEndOf="@id/etLifeAreaOne"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <ImageView
-            android:id="@+id/imageFour"
-            android:layout_width="@dimen/_28sdp"
-            android:layout_height="@dimen/_28sdp"
-            android:src="@drawable/iv_image_four"
-            android:layout_marginTop="@dimen/_20sdp"
-            app:layout_constraintTop_toBottomOf="@id/etAddTaskThree"
-            app:layout_constraintStart_toStartOf="@id/etFocusArea"/>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/consTaskTwo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:layout_constraintTop_toBottomOf="@id/consTaskOne"
+                    app:layout_constraintStart_toStartOf="@id/consTaskOne"
+                    app:layout_constraintEnd_toEndOf="@id/consTaskOne">
+
+                    <ImageView
+                        android:id="@+id/imageTwo"
+                        android:layout_width="@dimen/_28sdp"
+                        android:layout_height="@dimen/_28sdp"
+                        android:src="@drawable/iv_image_two"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etAddTaskTwo"
+                        style="@style/TextView_400_Regular"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_42sdp"
+                        android:background="@drawable/radius_border_gray"
+                        android:gravity="start|center"
+                        android:textSize="@dimen/_14ssp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:hint="Add task"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:singleLine="true"
+                        android:textColorHint="@color/gray"
+                        app:layout_constraintTop_toTopOf="@id/imageTwo"
+                        app:layout_constraintStart_toEndOf="@id/imageTwo"
+                        app:layout_constraintEnd_toEndOf="parent"/>
 
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/etAddTaskFour"
-            style="@style/TextView_400_Regular"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_42sdp"
-            android:background="@drawable/radius_border_gray"
-            android:gravity="start|center"
-            android:textSize="@dimen/_14ssp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:hint="Add task"
-            android:paddingHorizontal="@dimen/_10sdp"
-            android:singleLine="true"
-            android:textColorHint="@color/gray"
-            app:layout_constraintBottom_toBottomOf="@id/imageFour"
-            app:layout_constraintTop_toTopOf="@id/imageFour"
-            app:layout_constraintStart_toEndOf="@id/imageFour"
-            app:layout_constraintEnd_toEndOf="@id/etAddTaskOne"/>
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etLifeAreaTwo"
+                        style="@style/Textview_Regular"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_42sdp"
+                        android:background="@drawable/radius_border_gray"
+                        android:gravity="start|center"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:textSize="@dimen/_14ssp"
+                        android:focusable="false"
+                        android:onClick="@{v -> vm.onClick(v)}"
+                        android:hint="Select Life Area for task 2"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:singleLine="true"
+                        android:textColorHint="@color/gray"
+                        app:layout_constraintTop_toBottomOf="@id/etAddTaskTwo"
+                        app:layout_constraintStart_toStartOf="@id/etAddTaskTwo"
+                        app:layout_constraintEnd_toEndOf="@id/etAddTaskTwo"/>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/_14sdp"
+                        android:layout_height="@dimen/_14sdp"
+                        android:src="@drawable/iv_dorp_down"
+                        android:visibility="visible"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        app:layout_constraintTop_toTopOf="@id/etLifeAreaTwo"
+                        app:layout_constraintBottom_toBottomOf="@id/etLifeAreaTwo"
+                        app:layout_constraintEnd_toEndOf="@id/etLifeAreaTwo"/>
 
 
-        <ImageView
-            android:id="@+id/imageFive"
-            android:layout_width="@dimen/_28sdp"
-            android:layout_height="@dimen/_28sdp"
-            android:src="@drawable/iv_image_five"
-            android:layout_marginTop="@dimen/_20sdp"
-            app:layout_constraintTop_toBottomOf="@id/etAddTaskFour"
-            app:layout_constraintStart_toStartOf="@id/etFocusArea"/>
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/etAddTaskFive"
-            style="@style/TextView_400_Regular"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_42sdp"
-            android:background="@drawable/radius_border_gray"
-            android:gravity="start|center"
-            android:textSize="@dimen/_14ssp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:hint="Add task"
-            android:paddingHorizontal="@dimen/_10sdp"
-            android:singleLine="true"
-            android:textColorHint="@color/gray"
-            app:layout_constraintBottom_toBottomOf="@id/imageFive"
-            app:layout_constraintTop_toTopOf="@id/imageFive"
-            app:layout_constraintStart_toEndOf="@id/imageFive"
-            app:layout_constraintEnd_toEndOf="@id/etAddTaskOne"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/addBtn"
-            android:layout_width="0dp"
-            style="@style/Textview_Regular"
-            android:layout_height="wrap_content"
-            android:text="Add"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:textSize="@dimen/_14ssp"
-            android:textColor="@color/white"
-            android:padding="@dimen/_10sdp"
-            android:gravity="center"
-            android:onClick="@{v -> vm.onClick(v)}"
-            android:background="@drawable/button_bg"
-            app:layout_constraintStart_toStartOf="@id/etFocusArea"
-            app:layout_constraintEnd_toEndOf="@id/etFocusArea"
-            app:layout_constraintTop_toBottomOf="@id/etAddTaskFive"/>
-        
-        
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/consDes"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_item_view"
-            android:backgroundTint="@color/gray"
-            android:layout_marginTop="@dimen/_30sdp"
-            android:padding="@dimen/_10sdp"
-            app:layout_constraintTop_toBottomOf="@id/addBtn"
-            app:layout_constraintStart_toStartOf="@id/addBtn"
-            app:layout_constraintEnd_toEndOf="@id/addBtn">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/consTaskThree"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:layout_constraintTop_toBottomOf="@id/consTaskTwo"
+                    app:layout_constraintStart_toStartOf="@id/consTaskTwo"
+                    app:layout_constraintEnd_toEndOf="@id/consTaskTwo">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ivStar"
-                android:layout_width="@dimen/_12sdp"
-                android:layout_height="@dimen/_12sdp"
-                android:src="@drawable/iv_star"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+                    <ImageView
+                        android:id="@+id/imageThree"
+                        android:layout_width="@dimen/_28sdp"
+                        android:layout_height="@dimen/_28sdp"
+                        android:src="@drawable/iv_image_three"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
 
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/description"
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etAddTaskThree"
+                        style="@style/TextView_400_Regular"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_42sdp"
+                        android:background="@drawable/radius_border_gray"
+                        android:gravity="start|center"
+                        android:textSize="@dimen/_14ssp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:hint="Add task"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:singleLine="true"
+                        android:textColorHint="@color/gray"
+                        app:layout_constraintTop_toTopOf="@id/imageThree"
+                        app:layout_constraintStart_toEndOf="@id/imageThree"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etLifeAreaThree"
+                        style="@style/Textview_Regular"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_42sdp"
+                        android:background="@drawable/radius_border_gray"
+                        android:gravity="start|center"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:textSize="@dimen/_14ssp"
+                        android:focusable="false"
+                        android:onClick="@{v -> vm.onClick(v)}"
+                        android:hint="Select Life Area for task 3"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:singleLine="true"
+                        android:textColorHint="@color/gray"
+                        app:layout_constraintTop_toBottomOf="@id/etAddTaskThree"
+                        app:layout_constraintStart_toStartOf="@id/etAddTaskThree"
+                        app:layout_constraintEnd_toEndOf="@id/etAddTaskThree"/>
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/_14sdp"
+                        android:layout_height="@dimen/_14sdp"
+                        android:src="@drawable/iv_dorp_down"
+                        android:visibility="visible"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        app:layout_constraintTop_toTopOf="@id/etLifeAreaThree"
+                        app:layout_constraintBottom_toBottomOf="@id/etLifeAreaThree"
+                        app:layout_constraintEnd_toEndOf="@id/etLifeAreaThree"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/consTaskFour"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/consTaskThree"
+                    app:layout_constraintStart_toStartOf="@id/consTaskThree"
+                    app:layout_constraintEnd_toEndOf="@id/consTaskThree">
+
+                    <ImageView
+                        android:id="@+id/imageFour"
+                        android:layout_width="@dimen/_28sdp"
+                        android:layout_height="@dimen/_28sdp"
+                        android:src="@drawable/iv_image_four"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etAddTaskFour"
+                        style="@style/TextView_400_Regular"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_42sdp"
+                        android:background="@drawable/radius_border_gray"
+                        android:gravity="start|center"
+                        android:textSize="@dimen/_14ssp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:hint="Add task"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:singleLine="true"
+                        android:textColorHint="@color/gray"
+                        app:layout_constraintTop_toTopOf="@id/imageFour"
+                        app:layout_constraintStart_toEndOf="@id/imageFour"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etLifeAreaFour"
+                        style="@style/Textview_Regular"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_42sdp"
+                        android:background="@drawable/radius_border_gray"
+                        android:gravity="start|center"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:textSize="@dimen/_14ssp"
+                        android:focusable="false"
+                        android:onClick="@{v -> vm.onClick(v)}"
+                        android:hint="Select Life Area for task 4"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:singleLine="true"
+                        android:textColorHint="@color/gray"
+                        app:layout_constraintTop_toBottomOf="@id/etAddTaskFour"
+                        app:layout_constraintStart_toStartOf="@id/etAddTaskFour"
+                        app:layout_constraintEnd_toEndOf="@id/etAddTaskFour"/>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/_14sdp"
+                        android:layout_height="@dimen/_14sdp"
+                        android:src="@drawable/iv_dorp_down"
+                        android:visibility="visible"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        app:layout_constraintTop_toTopOf="@id/etLifeAreaFour"
+                        app:layout_constraintBottom_toBottomOf="@id/etLifeAreaFour"
+                        app:layout_constraintEnd_toEndOf="@id/etLifeAreaFour"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/consTaskFive"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/consTaskFour"
+                    app:layout_constraintStart_toStartOf="@id/consTaskFour"
+                    app:layout_constraintEnd_toEndOf="@id/consTaskFour">
+
+
+                    <ImageView
+                        android:id="@+id/imageFive"
+                        android:layout_width="@dimen/_28sdp"
+                        android:layout_height="@dimen/_28sdp"
+                        android:src="@drawable/iv_image_five"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etAddTaskFive"
+                        style="@style/TextView_400_Regular"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_42sdp"
+                        android:background="@drawable/radius_border_gray"
+                        android:gravity="start|center"
+                        android:textSize="@dimen/_14ssp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:hint="Add task"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:singleLine="true"
+                        android:textColorHint="@color/gray"
+                        app:layout_constraintTop_toTopOf="@id/imageFive"
+                        app:layout_constraintStart_toEndOf="@id/imageFive"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etLifeAreaFive"
+                        style="@style/Textview_Regular"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_42sdp"
+                        android:background="@drawable/radius_border_gray"
+                        android:gravity="start|center"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:textSize="@dimen/_14ssp"
+                        android:focusable="false"
+                        android:onClick="@{v -> vm.onClick(v)}"
+                        android:hint="Select Life Area for task "
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:singleLine="true"
+                        android:textColorHint="@color/gray"
+                        app:layout_constraintTop_toBottomOf="@id/etAddTaskFive"
+                        app:layout_constraintStart_toStartOf="@id/etAddTaskFive"
+                        app:layout_constraintEnd_toEndOf="@id/etAddTaskFive"/>
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/_14sdp"
+                        android:layout_height="@dimen/_14sdp"
+                        android:src="@drawable/iv_dorp_down"
+                        android:visibility="visible"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        app:layout_constraintTop_toTopOf="@id/etLifeAreaFive"
+                        app:layout_constraintBottom_toBottomOf="@id/etLifeAreaFive"
+                        app:layout_constraintEnd_toEndOf="@id/etLifeAreaFive"/>
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvAddTask"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+ Add Task 4"
+                    android:background="@drawable/button_bg"
+                    android:textColor="@color/white"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:paddingVertical="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:onClick="@{v -> vm.onClick(v)}"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintTop_toBottomOf="@id/consTaskFive"
+                    app:layout_constraintEnd_toEndOf="@id/consTaskThree"/>
+
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/addBtn"
+                android:layout_width="0dp"
                 style="@style/Textview_Regular"
-                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:text="Add"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:textSize="@dimen/_14ssp"
                 android:textColor="@color/white"
-                android:layout_marginHorizontal="@dimen/_5sdp"
-                android:textSize="@dimen/_12ssp"
-                android:text="No actions logged in ‘Health’ this week. Suggestion: Add a 10-min walk tomorrow?"
-                app:layout_constraintTop_toTopOf="@id/ivStar"
-                app:layout_constraintStart_toEndOf="@id/ivStar"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/consBottom"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_30sdp"
-            android:background="@drawable/bottom_bg"
-            android:layout_marginHorizontal="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            app:layout_constraintTop_toBottomOf="@id/consDes"
-            app:layout_constraintStart_toStartOf="@id/addBtn"
-            app:layout_constraintEnd_toEndOf="@id/addBtn">
-
-            <ImageView
-                android:id="@+id/bulb"
-                android:layout_width="@dimen/_12sdp"
-                android:layout_height="@dimen/_12sdp"
-                android:src="@drawable/iv_bulb"
-                android:layout_marginStart="@dimen/_10sdp"
-                app:layout_constraintTop_toTopOf="parent"
+                android:padding="@dimen/_10sdp"
+                android:gravity="center"
+                android:onClick="@{v -> vm.onClick(v)}"
+                android:background="@drawable/button_bg"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvAddTask"/>
 
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/text"
-                style="@style/TextView_400_Regular"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/consDes"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/_12ssp"
-                android:text="Gratitude helps shift focus to positivity. "
-                android:textColor="@color/app_black"
-                android:layout_marginStart="@dimen/_5sdp"
-                app:layout_constraintStart_toEndOf="@id/bulb"
-                app:layout_constraintTop_toTopOf="@id/bulb"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="@id/bulb"/>
+                android:background="@drawable/bg_item_view"
+                android:backgroundTint="@color/gray"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:padding="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@id/addBtn"
+                app:layout_constraintStart_toStartOf="@id/addBtn"
+                app:layout_constraintEnd_toEndOf="@id/addBtn">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivStar"
+                    android:layout_width="@dimen/_12sdp"
+                    android:layout_height="@dimen/_12sdp"
+                    android:src="@drawable/iv_star"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/description"
+                    style="@style/Textview_Regular"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_marginHorizontal="@dimen/_5sdp"
+                    android:textSize="@dimen/_12ssp"
+                    android:text="No actions logged in ‘Health’ this week. Suggestion: Add a 10-min walk tomorrow?"
+                    app:layout_constraintTop_toTopOf="@id/ivStar"
+                    app:layout_constraintStart_toEndOf="@id/ivStar"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/consBottom"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bottom_bg"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:paddingVertical="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:layout_constraintTop_toBottomOf="@id/consDes"
+                    app:layout_constraintStart_toStartOf="@id/consTaskThree"
+                    app:layout_constraintEnd_toEndOf="@id/consTaskThree">
+
+                    <ImageView
+                        android:id="@+id/bulb"
+                        android:layout_width="@dimen/_14sdp"
+                        android:layout_height="@dimen/_14sdp"
+                        android:src="@drawable/iv_bulb"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text"
+                        style="@style/TextView_400_Regular"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/_12ssp"
+                        android:text="@string/focus_on_actions_that_truly_move_you_forward"
+                        android:textColor="@color/app_black"
+                        android:layout_marginHorizontal="@dimen/_5sdp"
+                        app:layout_constraintStart_toEndOf="@id/bulb"
+                        app:layout_constraintTop_toTopOf="@id/bulb"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        
+
+
+
+
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -374,3 +577,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
+

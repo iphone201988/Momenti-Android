@@ -66,7 +66,19 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>() {
                     requireActivity().onBackPressedDispatcher.onBackPressed()   
                 }
                 R.id.etFocusArea ->{
-                    binding.rvFocusAreas.visibility = View.VISIBLE
+                  //  binding.rvFocusAreas.visibility = View.VISIBLE
+                }
+                R.id.tvAddTask -> {
+                    when {
+                        binding.consTaskFour.visibility == View.GONE -> {
+                            binding.consTaskFour.visibility = View.VISIBLE
+                            binding.tvAddTask.text = "+ Add Task 5"
+                        }
+                        binding.consTaskFive.visibility == View.GONE -> {
+                            binding.consTaskFive.visibility = View.VISIBLE
+                            binding.tvAddTask.visibility = View.GONE // hide button after 5
+                        }
+                    }
                 }
             }
         })
@@ -94,13 +106,13 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>() {
         focusAdapter = SimpleRecyclerViewAdapter(R.layout.item_layout_focus_area, BR.bean){ v, m, pos ->
             when(v?.id){
                 R.id.consMain ->{
-                    binding.rvFocusAreas.visibility = View.GONE
-                    binding.etFocusArea.setText(m.focus)
+//                    binding.rvFocusAreas.visibility = View.GONE
+//                    binding.etFocusArea.setText(m.focus)
                 }
             }
 
         }
-        binding.rvFocusAreas.adapter = focusAdapter
+      //  binding.rvFocusAreas.adapter = focusAdapter
         focusAdapter.list = focusList
         focusAdapter.notifyDataSetChanged()
     }

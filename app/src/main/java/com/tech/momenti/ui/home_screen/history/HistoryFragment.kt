@@ -12,6 +12,7 @@ import com.tech.momenti.base.BaseViewModel
 import com.tech.momenti.base.SimpleRecyclerViewAdapter
 import com.tech.momenti.base.utils.BaseCustomBottomSheet
 import com.tech.momenti.data.Gratitude
+import com.tech.momenti.data.GratitudeHistory
 import com.tech.momenti.data.TaskData
 import com.tech.momenti.data.TaskHistory
 import com.tech.momenti.databinding.BottomSheetCalendarBinding
@@ -30,9 +31,9 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() , BaseCustomBotto
     private lateinit var calendarBottomSheet: BaseCustomBottomSheet<BottomSheetCalendarBinding>
 
     private lateinit var historyTaskAdapter : SimpleRecyclerViewAdapter<TaskHistory, ItemLayoutTaskDateBinding>
-    private lateinit var historyGratitudeAdapter : SimpleRecyclerViewAdapter<Gratitude, ItemLayoutGratitudeBinding>
+    private lateinit var historyGratitudeAdapter : SimpleRecyclerViewAdapter<GratitudeHistory, ItemLayoutGratitudeBinding>
     private var taskHistoryList = ArrayList<TaskHistory>()
-    private var gratitudeList = ArrayList<Gratitude>()
+    private var gratitudeList = ArrayList<GratitudeHistory>()
 
     override fun onCreateView(view: View) {
         getHistoryList()
@@ -43,12 +44,50 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() , BaseCustomBotto
     }
 
     private fun getGratitudeList() {
-        gratitudeList.add(Gratitude("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and it to make a type specimen book.","14, Feb 2025 "))
-        gratitudeList.add(Gratitude("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and it to make a type specimen book.","14, Feb 2025 "))
-        gratitudeList.add(Gratitude("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and it to make a type specimen book.","14, Feb 2025 "))
-        gratitudeList.add(Gratitude("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and it to make a type specimen book.","14, Feb 2025 "))
-        gratitudeList.add(Gratitude("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and it to make a type specimen book.","14, Feb 2025 "))
-        gratitudeList.add(Gratitude("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and it to make a type specimen book.","14, Feb 2025 "))
+        gratitudeList.add(
+            GratitudeHistory(
+                "14, Sep 2025",
+                listOf(
+                    Gratitude( "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and it to make a type specimen book.",1),
+                    Gratitude( "Lorem Ipsum is simply dummy data and view",2),
+                    Gratitude( "Lorem Ipsum is simply dummy text...",3)
+                )
+            )
+        )
+
+        gratitudeList.add(
+            GratitudeHistory(
+                "15, Sep 2025",
+                listOf(
+                    Gratitude( "Need to read at least 5 pages of The Alchemist",1),
+                    Gratitude( "Lorem Ipsum is simply dummy data and view",2),
+                    Gratitude( "Lorem Ipsum is simply dummy text...",3)
+                )
+            )
+        )
+
+
+        gratitudeList.add(
+            GratitudeHistory(
+                "16, Sep 2025",
+                listOf(
+                    Gratitude( "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and it to make a type specimen book.",1),
+                    Gratitude( "Lorem Ipsum is simply dummy data and view",2),
+                    Gratitude( "Lorem Ipsum is simply dummy text...",3)
+                )
+            )
+        )
+
+        gratitudeList.add(
+            GratitudeHistory(
+                "17, Sep 2025",
+                listOf(
+                    Gratitude( "Need to read at least 5 pages of The Alchemist",1),
+                    Gratitude( "Lorem Ipsum is simply dummy data and view",2),
+                    Gratitude( "Lorem Ipsum is simply dummy text...",3)
+                )
+            )
+        )
     }
 
     private fun initOnClick() {
@@ -110,8 +149,15 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() , BaseCustomBotto
         historyTaskAdapter.list =  taskHistoryList
         historyTaskAdapter.notifyDataSetChanged()
 
-        historyGratitudeAdapter = SimpleRecyclerViewAdapter(R.layout.item_layout_gratitude,BR.bean){v,m,pos ->
 
+
+        historyGratitudeAdapter = SimpleRecyclerViewAdapter(R.layout.item_layout_gratitude,BR.bean){v,m,pos ->
+            when(v.id){
+                R.id.dropDown -> {
+                    m.isExpanded = !m.isExpanded   // toggle state
+                    historyGratitudeAdapter.notifyItemChanged(pos) // refresh only this row
+                }
+            }
         }
         binding.rvGratitude.adapter = historyGratitudeAdapter
         historyGratitudeAdapter.list = gratitudeList

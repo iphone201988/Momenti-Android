@@ -74,6 +74,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                             startActivity(intent)
 
                         }
+                        "Purchase Plan" ->{
+                            val intent= Intent(requireContext(), CommonActivity::class.java)
+                            intent.putExtra("from","purchasePlan")
+
+                            startActivity(intent)
+                        }
                     }
                 }
             }
@@ -88,6 +94,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         profileList.add(ProfileData(R.drawable.iv_edit_profile,"Edit Profile", 1,1))
         profileList.add(ProfileData(R.drawable.iv_change_password,"Change Password", 1,1))
         profileList.add(ProfileData(R.drawable.iv_bell,"Notifications", 2,1))
+        profileList.add(ProfileData(R.drawable.iv_empty_star,"Purchase Plan", 1,1))
         profileList.add(ProfileData(R.drawable.iv_share,"Share with Friends", 1,1))
         profileList.add(ProfileData(R.drawable.iv_support,"Support", 1,1))
         profileList.add(ProfileData(R.drawable.iv_logout,"Logout", 3,2))

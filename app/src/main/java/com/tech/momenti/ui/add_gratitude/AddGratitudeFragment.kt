@@ -1,47 +1,33 @@
-package com.tech.momenti.ui.auth.signup
+package com.tech.momenti.ui.add_gratitude
 
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import com.tech.momenti.R
 import com.tech.momenti.base.BaseFragment
 import com.tech.momenti.base.BaseViewModel
-import com.tech.momenti.databinding.FragmentDailyGratitudeBinding
-import com.tech.momenti.ui.auth.AuthCommonVM
+import com.tech.momenti.databinding.FragmentAddGratitudeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
-class DailyGratitudeFragment : BaseFragment<FragmentDailyGratitudeBinding>() {
-
-    private val viewModel : AuthCommonVM by viewModels()
-
-
-    override fun onCreateView(view: View) {
-        initOnClick()
-    }
+class AddGratitudeFragment : BaseFragment<FragmentAddGratitudeBinding>() {
+    private val viewModel : AddGratitudeVm by viewModels()
 
     override fun getLayoutResource(): Int {
-        return R.layout.fragment_daily_gratitude
+        return R.layout.fragment_add_gratitude
     }
 
     override fun getViewModel(): BaseViewModel {
         return viewModel
     }
 
-
-    private fun initOnClick() {
-        viewModel.onClick.observe(viewLifecycleOwner, Observer {
+    override fun onCreateView(view: View) {
+        viewModel.onClick.observe(viewLifecycleOwner , Observer{
             when(it?.id){
-                R.id.saveBtn ->{
-
-                    findNavController().navigate(R.id.fragmentAccountCreated)
-
-                }
-                R.id.ivBack ->{
-                    requireActivity().onBackPressedDispatcher.onBackPressed()
-                }
                 R.id.tvAddGratitude -> {
                     when {
                         binding.consFour.visibility == View.GONE -> {
@@ -54,7 +40,13 @@ class DailyGratitudeFragment : BaseFragment<FragmentDailyGratitudeBinding>() {
                         }
                     }
                 }
+                R.id.ivBack ->{
+                    requireActivity().onBackPressedDispatcher.onBackPressed()
+                }
+
             }
+
         })
     }
+
 }
