@@ -1,8 +1,8 @@
 package com.tech.momenti.base.local
 
 import android.content.SharedPreferences
-import com.tech.momenti.data.model.UserLoginData
 import com.google.gson.Gson
+import com.tech.momenti.data.model.SignupApiResponse
 import javax.inject.Inject
 
 class SharedPrefManager @Inject constructor(private val sharedPreferences: SharedPreferences) {
@@ -11,7 +11,7 @@ class SharedPrefManager @Inject constructor(private val sharedPreferences: Share
         const val IS_FIRST = "is_first"
     }
 
-    fun setLoginData(isFirst: UserLoginData) {
+    fun setLoginData(isFirst: SignupApiResponse) {
         val gson = Gson()
         val json = gson.toJson(isFirst)
         val editor = sharedPreferences.edit()
@@ -19,10 +19,10 @@ class SharedPrefManager @Inject constructor(private val sharedPreferences: Share
         editor.apply()
     }
 
-    fun getLoginData(): UserLoginData {
+    fun getLoginData(): SignupApiResponse {
         val gson = Gson()
         val json: String? = sharedPreferences.getString(KEY.IS_FIRST, "")
-        val obj: UserLoginData = gson.fromJson(json, UserLoginData::class.java)
+        val obj: SignupApiResponse = gson.fromJson(json, SignupApiResponse::class.java)
         return obj
     }
 

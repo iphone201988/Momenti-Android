@@ -16,28 +16,77 @@ class AuthCommonVM @Inject constructor(
     private val apiHelper: ApiHelper,
 ) : BaseViewModel() {
     val observeCommon = SingleRequestEvent<JsonObject>()
-    fun socialLogin(request: HashMap<String, Any>, url: String) {
+
+    fun login(data: HashMap<String, Any>, url: String) {
         CoroutineScope(Dispatchers.IO).launch {
             observeCommon.postValue(Resource.loading(null))
             try {
-                apiHelper.apiForRawBody(request, url).let {
-                    if (it.isSuccessful) {
-                        observeCommon.postValue(Resource.success("SOCIAL", it.body()))
-                    } else
-                        if (it.code() == 401)
-                            observeCommon.postValue(Resource.error("Unauthorized", null))
-                        else
-                            observeCommon.postValue(Resource.error(handleErrorResponse(it.errorBody()), null))
+                val response = apiHelper.apiForRawBody(data, url)
+                if (response.isSuccessful && response.body() != null) {
+                    observeCommon.postValue(Resource.success("login", response.body()))
+                } else {
+                    observeCommon.postValue(
+                        Resource.error(
+                            handleErrorResponse(
+                                response.errorBody(),
+                                response.code()
+                            ), null
+                        )
+                    )
                 }
             } catch (e: Exception) {
-                observeCommon.postValue(
-                    Resource.error(
-                        e.message, null
-                    )
-                )
+                observeCommon.postValue(Resource.error(e.message.toString(), null))
             }
-
         }
     }
-}
+
+
+    fun createAccount(data: HashMap<String, Any>, url: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            observeCommon.postValue(Resource.loading(null))
+            try {
+                val response = apiHelper.apiForRawBody(data, url)
+                if (response.isSuccessful && response.body() != null) {
+                    observeCommon.postValue(Resource.success("createAccount", response.body()))
+                } else {
+                    observeCommon.postValue(
+                        Resource.error(
+                            handleErrorResponse(
+                                response.errorBody(),
+                                response.code()
+                            ), null
+                        )
+                    )
+                }
+            } catch (e: Exception) {
+                observeCommon.postValue(Resource.error(e.message.toString(), null))
+            }
+        }
+    }
+
+    fun verifyOtp(data: HashMap<String, Any>, url: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            observeCommon.postValue(Resource.loading(null))
+            try {
+                val response = apiHelper.apiForRawBody(data, url)
+                if (response.isSuccessful && response.body() != null) {
+                    observeCommon.postValue(Resource.success("verifyOtp", response.body()))
+                } else {
+                    observeCommon.postValue(
+                        Resource.error(
+                            handleErrorResponse(
+                                response.errorBody(),
+                                response.code()
+                            ), null
+                        )
+                    )
+                }
+            } catch (e: Exception) {
+                observeCommon.postValue(Resource.error(e.message.toString(), null))
+            }
+        }
+    }
+
+    }
+
 

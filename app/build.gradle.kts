@@ -72,6 +72,11 @@ dependencies {
 
 
 
+    //loader
+   // implementation(libs.android.spinkit)
+    implementation(libs.ccp)
+
+
     //circular progress bar
         implementation ("com.mikhaellopez:circularprogressbar:3.1.0")
 

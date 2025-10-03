@@ -46,6 +46,7 @@ abstract class BaseActivity<Binding : ViewDataBinding> : AppCompatActivity(),
         connectivityProvider.addListener(this)
 //        setStatusBarColor(R.color.white)
         setStatusBarDarkText()
+        progressDialogAvl = ProgressDialogAvl(this)
         onCreateView()
 
         val vm = getViewModel()
@@ -104,8 +105,13 @@ abstract class BaseActivity<Binding : ViewDataBinding> : AppCompatActivity(),
 //
 //    }
 
+    fun showLoading(){
+        progressDialogAvl.isLoading(true)
+
+    }
+
     fun hideLoading() {
-        progressSheet?.dismissAllowingStateLoss()
+        progressDialogAvl.isLoading(false)
     }
 
 //    fun onError(error: Throwable, showErrorView: Boolean) {

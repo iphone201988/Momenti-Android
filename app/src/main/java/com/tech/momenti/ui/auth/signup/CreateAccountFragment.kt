@@ -10,7 +10,11 @@ import androidx.navigation.fragment.findNavController
 import com.tech.momenti.R
 import com.tech.momenti.base.BaseFragment
 import com.tech.momenti.base.BaseViewModel
+import com.tech.momenti.base.utils.BindingUtils
+import com.tech.momenti.base.utils.Status
 import com.tech.momenti.base.utils.showToast
+import com.tech.momenti.data.api.Constants
+import com.tech.momenti.data.model.SignupApiResponse
 import com.tech.momenti.databinding.FragmentCreateAccountBinding
 import com.tech.momenti.ui.auth.AuthCommonVM
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,8 +25,44 @@ class CreateAccountFragment : BaseFragment<FragmentCreateAccountBinding>() {
 
     private val viewModel : AuthCommonVM by viewModels()
 
+    private var email : String ? = null
+
     override fun onCreateView(view: View) {
         initOnClick()
+        initObserver()
+    }
+
+    private fun initObserver() {
+        viewModel.observeCommon.observe(viewLifecycleOwner, Observer{
+            when(it?.status){
+                Status.LOADING -> {
+                    showLoading()
+                }
+                Status.SUCCESS -> {
+                    hideLoading()
+                    try {
+                        val myDataModel : SignupApiResponse ? = BindingUtils.parseJson(it.data.toString())
+                        if (myDataModel != null){
+                            if (myDataModel.data != null){
+                                val bundle = Bundle()
+                                bundle.putString("side","create")
+                                bundle.putString("email", email)
+                                findNavController().navigate(R.id.fragmentVerifyOtp,bundle)
+                            }
+                        }
+                    }catch (e : Exception){
+                        showToast(e.message.toString())
+                    }
+
+                }
+                Status.ERROR -> {
+                    hideLoading()
+                }
+                else->{
+
+                }
+            }
+        })
     }
 
     override fun getLayoutResource(): Int {
@@ -39,9 +79,13 @@ class CreateAccountFragment : BaseFragment<FragmentCreateAccountBinding>() {
             when(it?.id){
                 R.id.signUpBtn ->{
                     if (isEmptyField()){
-                        val bundle = Bundle()
-                        bundle.putString("side","create")
-                        findNavController().navigate(R.id.fragmentVerifyOtp,bundle)
+                        email = binding.etEmail.text.toString().trim()
+                        val data = HashMap<String, Any>()
+                        data["email"] = binding.etEmail.text.toString().trim()
+                        data["password"]  = binding.etPassword.text.toString().trim()
+                        data["name"] = binding.etName.text.toString().trim()
+                        viewModel.createAccount(data, Constants.SIGN_UP)
+
                     }
 
 

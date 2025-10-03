@@ -45,13 +45,11 @@ abstract class BaseFragment<Binding : ViewDataBinding> : Fragment() {
         super.onPause()
         activity?.hideKeyboard()
     }
-//    fun showLoading(s: String?) {
-//        parentActivity?.showLoading(s)
-//    }
-//
-//    fun showLoading(s: Int) {
-//        parentActivity?.showLoading(getString(s))
-//    }
+    fun showLoading() {
+        parentActivity?.showLoading()
+    }
+
+
     fun hideLoading() {
         parentActivity?.hideLoading()
     }

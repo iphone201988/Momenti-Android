@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tech.momenti.R
 import com.google.android.material.imageview.ShapeableImageView
+import com.google.gson.Gson
 import com.tech.momenti.BR
 import com.tech.momenti.base.SimpleRecyclerViewAdapter
 import com.tech.momenti.data.Gratitude
@@ -172,6 +173,19 @@ object BindingUtils {
         notificationAdapter.list = notification
         notificationAdapter.notifyDataSetChanged()
 
+    }
+
+
+
+    @JvmStatic
+    inline fun <reified T> parseJson(json: String): T? {
+        return try {
+            val gson = Gson()
+            gson.fromJson(json, T::class.java)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
     }
 
 }

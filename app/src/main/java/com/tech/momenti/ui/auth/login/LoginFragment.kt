@@ -11,6 +11,7 @@ import com.tech.momenti.R
 import com.tech.momenti.base.BaseFragment
 import com.tech.momenti.base.BaseViewModel
 import com.tech.momenti.base.utils.showToast
+import com.tech.momenti.data.api.Constants
 import com.tech.momenti.databinding.FragmentLoginBinding
 import com.tech.momenti.ui.auth.AuthCommonVM
 import com.tech.momenti.ui.home_screen.HomeDashboardActivity
@@ -41,6 +42,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 }
                 R.id.loginBtn ->{
                     if (isEmptyField()){
+                        val data = HashMap<String, Any>()
+                        data["email"] = binding.etEmail.text.toString().trim()
+                        data["password"] = binding.etPassword.text.toString().trim()
+                        viewModel.login(data, Constants.LOGIN)
                         val intent = Intent(requireContext(), HomeDashboardActivity::class.java)
                         startActivity(intent)
                     }
