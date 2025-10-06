@@ -59,7 +59,9 @@ class VerifyOtpFragment : BaseFragment<FragmentVerifyOtpBinding>() {
                                      findNavController().navigate(R.id.fragmentDailyTask)
                                 }
                                 else{
-                                    findNavController().navigate(R.id.fragmentNewPassword)
+                                    val bundle = Bundle()
+                                    bundle.putString("email", email)
+                                    findNavController().navigate(R.id.fragmentNewPassword, bundle)
                                 }
                             }
                         }
@@ -105,6 +107,10 @@ class VerifyOtpFragment : BaseFragment<FragmentVerifyOtpBinding>() {
 
                            // findNavController().navigate(R.id.fragmentDailyTask)
                         }else{
+                            val data = HashMap<String, Any>()
+                            data["email"] = email.toString()
+                            data["otp"]  = otpData
+                            data["type"] = 2
                          //   findNavController().navigate(R.id.fragmentNewPassword)
                         }
                     }

@@ -87,6 +87,50 @@ class AuthCommonVM @Inject constructor(
         }
     }
 
+    fun forgotPassword(data : HashMap<String, Any>, url: String){
+        CoroutineScope(Dispatchers.IO).launch {
+            observeCommon.postValue(Resource.loading(null))
+            try {
+                val response = apiHelper.apiForRawBody(data, url)
+                if (response.isSuccessful && response.body() != null) {
+                    observeCommon.postValue(Resource.success("forgotPassword", response.body()))
+                } else {
+                    observeCommon.postValue(
+                        Resource.error(
+                            handleErrorResponse(
+                                response.errorBody(),
+                                response.code()
+                            ), null
+                        )
+                    )
+                }
+            } catch (e: Exception) {
+                observeCommon.postValue(Resource.error(e.message.toString(), null))
+            }
+        }
+    }
+    fun resetPassword(data : HashMap<String, Any>, url: String){
+        CoroutineScope(Dispatchers.IO).launch {
+            observeCommon.postValue(Resource.loading(null))
+            try {
+                val response = apiHelper.apiForRawBody(data, url)
+                if (response.isSuccessful && response.body() != null) {
+                    observeCommon.postValue(Resource.success("resetPassword", response.body()))
+                } else {
+                    observeCommon.postValue(
+                        Resource.error(
+                            handleErrorResponse(
+                                response.errorBody(),
+                                response.code()
+                            ), null
+                        )
+                    )
+                }
+            } catch (e: Exception) {
+                observeCommon.postValue(Resource.error(e.message.toString(), null))
+            }
+        }
+    }
     }
 
 

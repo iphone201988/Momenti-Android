@@ -9,7 +9,11 @@ import androidx.navigation.fragment.findNavController
 import com.tech.momenti.R
 import com.tech.momenti.base.BaseFragment
 import com.tech.momenti.base.BaseViewModel
+import com.tech.momenti.base.utils.BindingUtils
+import com.tech.momenti.base.utils.Status
 import com.tech.momenti.base.utils.showToast
+import com.tech.momenti.data.api.Constants
+import com.tech.momenti.data.api.SimpleApiResponse
 import com.tech.momenti.databinding.FragmentNewPasswordBinding
 import com.tech.momenti.ui.auth.AuthCommonVM
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,8 +23,43 @@ class NewPasswordFragment : BaseFragment<FragmentNewPasswordBinding>() {
 
     private val viewModel : AuthCommonVM by viewModels()
 
+    private var email : String ? = null
+
+
     override fun onCreateView(view: View) {
         initOnClick()
+        initView()
+        initObserver()
+    }
+
+    private fun initObserver() {
+        viewModel.observeCommon.observe(viewLifecycleOwner, Observer{
+            when(it?.status){
+                Status.LOADING -> {
+                    showLoading()
+                }
+                Status.SUCCESS ->  {
+                    hideLoading()
+                    val myDataModel : SimpleApiResponse? = BindingUtils.parseJson(it.data.toString())
+                    if (myDataModel != null){
+                        if (myDataModel.message != null){
+                            findNavController().navigate(R.id.fragmentPasswordChanged)
+                        }
+                    }
+                }
+                Status.ERROR ->  {
+                    hideLoading()
+                    showToast(it.message.toString())
+                }
+                else ->  {
+
+                }
+            }
+        })
+    }
+
+    private fun initView() {
+        email =  arguments?.getString("email")
     }
 
     override fun getLayoutResource(): Int {
@@ -37,7 +76,11 @@ class NewPasswordFragment : BaseFragment<FragmentNewPasswordBinding>() {
             when(it?.id){
                 R.id.continueBtn ->{
                     if (isEmptyField()){
-                        findNavController().navigate(R.id.fragmentPasswordChanged)
+                        val data = HashMap<String, Any>()
+                        data["email"] = email.toString()
+                        data["newPassword"] = binding.etPassword.text.toString().trim()
+                        viewModel.resetPassword(data, Constants.RESET_PASSWORD)
+                 //       findNavController().navigate(R.id.fragmentPasswordChanged)
 
                     }
 

@@ -1,5 +1,6 @@
 package com.tech.momenti.ui.auth.signup
 
+import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -8,7 +9,11 @@ import androidx.navigation.fragment.findNavController
 import com.tech.momenti.R
 import com.tech.momenti.base.BaseFragment
 import com.tech.momenti.base.BaseViewModel
+import com.tech.momenti.base.utils.BindingUtils
+import com.tech.momenti.base.utils.Status
 import com.tech.momenti.base.utils.showToast
+import com.tech.momenti.data.api.Constants
+import com.tech.momenti.data.model.SignupApiResponse
 import com.tech.momenti.databinding.FragmentForgotPasswordBinding
 import com.tech.momenti.ui.auth.AuthCommonVM
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,9 +24,45 @@ class ForgotPasswordFragment : BaseFragment<FragmentForgotPasswordBinding>() {
 
     private val viewModel : AuthCommonVM by viewModels()
 
+    private var email : String ? = null
+
 
     override fun onCreateView(view: View) {
-     initOnClick()
+        initOnClick()
+        initObserver()
+    }
+
+    private fun initObserver() {
+        viewModel.observeCommon.observe(viewLifecycleOwner, Observer{
+            when(it?.status){
+                Status.LOADING ->  {
+                    showLoading()
+                }
+                Status.SUCCESS ->  {
+                    hideLoading()
+                    try {
+                        val myDataModel : SignupApiResponse ? = BindingUtils.parseJson(it.data.toString())
+                        if (myDataModel != null){
+                            if (myDataModel.data != null){
+                                val bundle = Bundle()
+                                bundle.putString("email", email)
+                                findNavController().navigate(R.id.fragmentVerifyOtp,bundle)
+                            }
+                        }
+                    }catch (e  : Exception){
+                        showToast(e.message.toString())
+                    }
+
+                }
+                Status.ERROR -> {
+                    hideLoading()
+                    showToast(it.message.toString())
+                }
+                else ->{
+
+                }
+            }
+        })
     }
 
     override fun getLayoutResource(): Int {
@@ -39,7 +80,12 @@ class ForgotPasswordFragment : BaseFragment<FragmentForgotPasswordBinding>() {
             when(it?.id){
                 R.id.saveBtn ->{
                     if (isEmptyField()){
-                        findNavController().navigate(R.id.fragmentVerifyOtp)
+                        email = binding.etEmail.text.toString().trim()
+                        val data = HashMap<String, Any>()
+                        data["email"] = binding.etEmail.text.toString().trim()
+                        viewModel.forgotPassword(data, Constants.FORGOT_PASSWORD)
+
+
 
                     }
 
