@@ -5,7 +5,7 @@
     <data>
         <variable
             name="bean"
-            type="com.tech.momenti.data.FocusArea" />
+            type="com.tech.momenti.data.model.LifeAreaResponse.Data" />
         <variable
             name="callback"
             type="com.tech.momenti.base.SimpleRecyclerViewAdapter.SimpleCallback" />
@@ -27,7 +27,7 @@
             style="@style/Textview_Regular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{bean.focus}"
+            android:text="@{bean.lifeArea}"
             android:layout_marginStart="@dimen/_10sdp"
             android:textSize="@dimen/_12ssp"
             android:textColor="@color/app_black"

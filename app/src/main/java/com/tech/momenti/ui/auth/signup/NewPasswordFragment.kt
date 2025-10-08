@@ -100,12 +100,17 @@ class NewPasswordFragment : BaseFragment<FragmentNewPasswordBinding>() {
 
 
     private fun isEmptyField() : Boolean {
+        var password = binding.etPassword.text.toString().trim()
         if (TextUtils.isEmpty(binding.etPassword.text.toString().trim())){
             showToast("Please enter password")
             return false
         }
         if (TextUtils.isEmpty(binding.etConfirmPassword.text.toString().trim())){
             showToast("Please enter confirm password")
+            return false
+        }
+        if (password != binding.etConfirmPassword.text.toString().trim()){
+            showToast("Password and confirm password not matched")
             return false
         }
         return true

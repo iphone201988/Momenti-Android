@@ -16,6 +16,16 @@ object Constants {
     const val  RESET_PASSWORD = "auth/reset-password"
     const val  CHANGE_PASSWORD =  "auth/change-password"
 
+    const val ADD_GRATITUDE = "gratitude"
+
+    const val ADD_TASK = "task"
+
+    const val LIFE_AREA = "life-area"
+
+    const val UPDATE_TASK = "task/update-status"
+
+    const val DELETE_TASK = "task/delete"
+
 
 
 }

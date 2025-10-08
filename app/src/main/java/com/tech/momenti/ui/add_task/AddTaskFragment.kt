@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -16,22 +18,40 @@ import com.tech.momenti.R
 import com.tech.momenti.base.BaseFragment
 import com.tech.momenti.base.BaseViewModel
 import com.tech.momenti.base.SimpleRecyclerViewAdapter
+import com.tech.momenti.base.utils.BaseCustomBottomSheet
+import com.tech.momenti.base.utils.BindingUtils
+import com.tech.momenti.base.utils.Status
+import com.tech.momenti.base.utils.showToast
 import com.tech.momenti.data.FocusArea
+import com.tech.momenti.data.api.Constants
+import com.tech.momenti.data.model.AddTaskApiResponse
+import com.tech.momenti.data.model.LifeAreaResponse
+import com.tech.momenti.databinding.BottomSheetLifeAreaBinding
 import com.tech.momenti.databinding.FragmentAddTaskBinding
 import com.tech.momenti.databinding.ItemLayoutFocusAreaBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @AndroidEntryPoint
-class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>() {
+class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>() , BaseCustomBottomSheet.Listener {
 
 
-    private lateinit var focusAdapter : SimpleRecyclerViewAdapter<FocusArea, ItemLayoutFocusAreaBinding>
+    private lateinit var bottomSheetLifeArea : BaseCustomBottomSheet<BottomSheetLifeAreaBinding>
+
+    private lateinit var focusAdapter : SimpleRecyclerViewAdapter<LifeAreaResponse.Data, ItemLayoutFocusAreaBinding>
     private var focusList = ArrayList<FocusArea>()
+
+    private var selectedEditText: AppCompatEditText? = null
+
+    private val lifeAreaMap = HashMap<EditText, String>()
 
     private val viewModel : AddTaskFragmentVm by viewModels()
     override fun onCreateView(view: View) {
 
         initOnClick()
+        initBottomSheet()
 
         val fullText = "No actions logged in ‘Health’ this week. Suggestion: Add a 10-min walk tomorrow?"
 
@@ -54,9 +74,55 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>() {
         binding.description.text = spannable
 
         getFocusList()
+
+        initObserver()
         initAdapter()
 
 
+    }
+
+    private fun initObserver() {
+        viewModel.obrCommon.observe(viewLifecycleOwner, Observer{
+            when(it?.status){
+                Status.LOADING ->  {
+                    showLoading()
+                }
+                Status.SUCCESS ->  {
+                    hideLoading()
+                    when(it.message){
+                        "getLifeArea" ->{
+                            val myDataModel : LifeAreaResponse ? = BindingUtils.parseJson(it.data.toString())
+                            if (myDataModel != null){
+                                if (myDataModel.data != null){
+                                    focusAdapter.list = myDataModel.data
+                                }
+                            }
+                        }
+                        "addTask" ->{
+                            val myDataModel : AddTaskApiResponse ? = BindingUtils.parseJson(it.data.toString())
+                            if (myDataModel != null){
+                                if (myDataModel.data != null){
+                                    requireActivity().onBackPressedDispatcher.onBackPressed()
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+                Status.ERROR -> {
+                    hideLoading()
+                    showToast(it.message.toString())
+                }
+                else -> {
+
+                }
+            }
+        })
+    }
+
+    private fun initBottomSheet() {
+        bottomSheetLifeArea = BaseCustomBottomSheet(requireContext(), R.layout.bottom_sheet_life_area,this)
     }
 
     private fun initOnClick() {
@@ -80,6 +146,41 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>() {
                         }
                     }
                 }
+                R.id.etLifeAreaOne ->{
+                    selectedEditText = binding.etLifeAreaOne
+                    bottomSheetLifeArea.show()
+                }
+                R.id.etLifeAreaTwo ->{
+                    selectedEditText = binding.etLifeAreaTwo
+                    bottomSheetLifeArea.show()
+
+                }
+                R.id.etLifeAreaThree ->{
+                    selectedEditText = binding.etLifeAreaThree
+                    bottomSheetLifeArea.show()
+
+                }
+                R.id.etLifeAreaFour ->{
+                    selectedEditText = binding.etLifeAreaFour
+                    bottomSheetLifeArea.show()
+
+                }
+                R.id.etLifeAreaFive ->{
+                    selectedEditText = binding.etLifeAreaFive
+                    bottomSheetLifeArea.show()
+
+                }
+                R.id.addBtn ->{
+                    // Get current date in yyyy-MM-dd format
+                    val currentDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
+
+
+                    // Prepare request data
+                    val requestData = prepareTasksData(currentDate)
+
+                    viewModel.addTask(requestData, Constants.ADD_TASK)
+
+                }
             }
         })
     }
@@ -94,27 +195,65 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>() {
 
 
     private fun getFocusList() {
-        focusList.add(FocusArea("Health"))
-        focusList.add(FocusArea("Work & Productivity"))
-        focusList.add(FocusArea("Relationships"))
-        focusList.add(FocusArea("Learning & Growth"))
-        focusList.add(FocusArea("Mindfulness & Gratitude"))
+        viewModel.getLifeArea(Constants.LIFE_AREA)
     }
+
+
+    private fun prepareTasksData(date: String): HashMap<String, Any> {
+        val taskList = ArrayList<HashMap<String, Any>>()
+
+        fun addTask(titleEt: EditText?, lifeAreaEt: EditText?) {
+            if (titleEt == null || lifeAreaEt == null) return
+
+            val title = titleEt.text?.toString()?.trim().orEmpty()
+            val lifeAreaId = lifeAreaMap[lifeAreaEt].orEmpty()
+
+            if (title.isNotEmpty() && lifeAreaId.isNotEmpty()) {
+                val task = HashMap<String, Any>().apply {
+                    put("title", title)
+                    put("lifeAreaId", lifeAreaId)
+                    put("status", "win")
+                }
+                taskList.add(task)
+            }
+        }
+
+        // Add all your EditText pairs safely
+        addTask(binding.etAddTaskOne, binding.etLifeAreaOne)
+        addTask(binding.etAddTaskTwo, binding.etLifeAreaTwo)
+        addTask(binding.etAddTaskThree, binding.etLifeAreaThree)
+        addTask(binding.etAddTaskFour, binding.etLifeAreaFour)
+        addTask(binding.etAddTaskFive, binding.etLifeAreaFive)
+
+        return hashMapOf(
+            "date" to date,
+            "tasks" to taskList
+        )
+    }
+
+
 
 
     private fun initAdapter() {
         focusAdapter = SimpleRecyclerViewAdapter(R.layout.item_layout_focus_area, BR.bean){ v, m, pos ->
             when(v?.id){
-                R.id.consMain ->{
-//                    binding.rvFocusAreas.visibility = View.GONE
-//                    binding.etFocusArea.setText(m.focus)
+                R.id.consMain -> {
+                    selectedEditText?.let { editText ->
+                        editText.setText(m.lifeArea ?: "")
+                        lifeAreaMap[editText] = m._id ?: ""   // ✅ Save mapping
+                    }
+                    bottomSheetLifeArea.dismiss()
                 }
+
             }
 
         }
-      //  binding.rvFocusAreas.adapter = focusAdapter
-        focusAdapter.list = focusList
+        bottomSheetLifeArea.binding.rvCommonSelection.adapter = focusAdapter
         focusAdapter.notifyDataSetChanged()
+    }
+
+    override fun onViewClick(view: View?) {
+
     }
 
 

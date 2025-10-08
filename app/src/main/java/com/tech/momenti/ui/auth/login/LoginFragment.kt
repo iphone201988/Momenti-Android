@@ -10,8 +10,11 @@ import androidx.navigation.fragment.findNavController
 import com.tech.momenti.R
 import com.tech.momenti.base.BaseFragment
 import com.tech.momenti.base.BaseViewModel
+import com.tech.momenti.base.utils.BindingUtils
+import com.tech.momenti.base.utils.Status
 import com.tech.momenti.base.utils.showToast
 import com.tech.momenti.data.api.Constants
+import com.tech.momenti.data.model.VerifyOtpApiResponse
 import com.tech.momenti.databinding.FragmentLoginBinding
 import com.tech.momenti.ui.auth.AuthCommonVM
 import com.tech.momenti.ui.home_screen.HomeDashboardActivity
@@ -24,6 +27,36 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     private val viewModel : AuthCommonVM by viewModels()
     override fun onCreateView(view: View) {
         initOnClick()
+        initObserver()
+    }
+
+    private fun initObserver() {
+        viewModel.observeCommon.observe(viewLifecycleOwner, Observer{
+            when(it?.status){
+                Status.LOADING -> {
+                    showLoading()
+                }
+                Status.SUCCESS -> {
+                    hideLoading()
+                    val myDataModel : VerifyOtpApiResponse ? = BindingUtils.parseJson(it.data.toString())
+                    if (myDataModel != null){
+                        if (myDataModel.user != null){
+                            sharedPrefManager.setLoginData(myDataModel)
+                            val intent = Intent(requireContext(), HomeDashboardActivity::class.java)
+                            startActivity(intent)
+                            requireActivity().finish()
+                        }
+                    }
+                }
+                Status.ERROR ->  {
+                    hideLoading()
+                    showToast(it.message.toString())
+                }
+                else ->  {
+
+                }
+            }
+        })
     }
 
     private fun initOnClick() {
@@ -46,8 +79,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                         data["email"] = binding.etEmail.text.toString().trim()
                         data["password"] = binding.etPassword.text.toString().trim()
                         viewModel.login(data, Constants.LOGIN)
-                        val intent = Intent(requireContext(), HomeDashboardActivity::class.java)
-                        startActivity(intent)
+
                     }
 
                 }

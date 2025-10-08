@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="bean"
+            type="String" />
+
+        <variable
+            name="pos"
+            type="Integer" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/consMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/_5sdp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvName"
+            style="@style/TextView_400_Regular"
+            android:text="@{bean}"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_34sdp"
+            android:gravity="center"
+            android:textSize="@dimen/_13ssp"
+            android:hint="Test"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:textColorHint="@color/black"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/gray"
+            android:alpha="0.4"
+            app:layout_constraintBottom_toBottomOf="@+id/tvName"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

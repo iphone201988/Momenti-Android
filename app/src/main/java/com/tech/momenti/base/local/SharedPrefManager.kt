@@ -3,6 +3,7 @@ package com.tech.momenti.base.local
 import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.tech.momenti.data.model.SignupApiResponse
+import com.tech.momenti.data.model.VerifyOtpApiResponse
 import javax.inject.Inject
 
 class SharedPrefManager @Inject constructor(private val sharedPreferences: SharedPreferences) {
@@ -11,7 +12,7 @@ class SharedPrefManager @Inject constructor(private val sharedPreferences: Share
         const val IS_FIRST = "is_first"
     }
 
-    fun setLoginData(isFirst: SignupApiResponse) {
+    fun setLoginData(isFirst: VerifyOtpApiResponse) {
         val gson = Gson()
         val json = gson.toJson(isFirst)
         val editor = sharedPreferences.edit()
@@ -19,12 +20,18 @@ class SharedPrefManager @Inject constructor(private val sharedPreferences: Share
         editor.apply()
     }
 
-    fun getLoginData(): SignupApiResponse {
-        val gson = Gson()
-        val json: String? = sharedPreferences.getString(KEY.IS_FIRST, "")
-        val obj: SignupApiResponse = gson.fromJson(json, SignupApiResponse::class.java)
-        return obj
+    fun getLoginData(): VerifyOtpApiResponse? {
+        return try {
+            val json = sharedPreferences.getString(KEY.IS_FIRST, null)
+            if (!json.isNullOrEmpty()) {
+                Gson().fromJson(json, VerifyOtpApiResponse::class.java)
+            } else null
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
     }
+
 
     fun setToken(isFirst: String) {
         val editor = sharedPreferences.edit()

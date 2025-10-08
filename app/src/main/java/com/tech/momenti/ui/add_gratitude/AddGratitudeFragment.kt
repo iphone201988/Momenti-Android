@@ -10,8 +10,18 @@ import androidx.lifecycle.Observer
 import com.tech.momenti.R
 import com.tech.momenti.base.BaseFragment
 import com.tech.momenti.base.BaseViewModel
+import com.tech.momenti.base.utils.BindingUtils
+import com.tech.momenti.base.utils.Status
+import com.tech.momenti.base.utils.showToast
+import com.tech.momenti.data.GratitudeItem
+import com.tech.momenti.data.GratitudeRequest
+import com.tech.momenti.data.api.Constants
+import com.tech.momenti.data.model.AddGratitudeApiResponse
 import com.tech.momenti.databinding.FragmentAddGratitudeBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @AndroidEntryPoint
 class AddGratitudeFragment : BaseFragment<FragmentAddGratitudeBinding>() {
@@ -26,6 +36,43 @@ class AddGratitudeFragment : BaseFragment<FragmentAddGratitudeBinding>() {
     }
 
     override fun onCreateView(view: View) {
+
+        binding.date.text = SimpleDateFormat("d, MMM yyyy", Locale.getDefault()).format(Date())
+
+        initOnClick()
+        initObserver()
+
+    }
+
+    private fun initObserver() {
+        viewModel.observeCommon.observe(viewLifecycleOwner, Observer{
+            viewModel.observeCommon.observe(viewLifecycleOwner, Observer{
+                when(it?.status){
+                    Status.LOADING -> {
+                        showLoading()
+                    }
+                    Status.SUCCESS -> {
+                        hideLoading()
+                        val myDataModel : AddGratitudeApiResponse ? = BindingUtils.parseJson(it.data.toString())
+                        if (myDataModel != null){
+                            if (myDataModel.data != null){
+                                requireActivity().onBackPressedDispatcher.onBackPressed()
+                            }
+                        }
+                    }
+                    Status.ERROR -> {
+                        hideLoading()
+                        showToast(it.message.toString())
+                    }
+                    else -> {
+
+                    }
+                }
+            })
+        })
+    }
+
+    private fun initOnClick() {
         viewModel.onClick.observe(viewLifecycleOwner , Observer{
             when(it?.id){
                 R.id.tvAddGratitude -> {
@@ -43,6 +90,40 @@ class AddGratitudeFragment : BaseFragment<FragmentAddGratitudeBinding>() {
                 R.id.ivBack ->{
                     requireActivity().onBackPressedDispatcher.onBackPressed()
                 }
+                R.id.saveBtn -> {
+                    // Get current date in yyyy-MM-dd format
+                    val currentDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
+
+                    // List of all EditTexts
+                    val editTexts = listOf(
+                        binding.etAddGratitudeOne,
+                        binding.etAddGratitudeTwo,
+                        binding.etAddGratitudeThree,
+                        binding.etAddGratitudeFour,
+                        binding.etAddGratitudeFive
+                    )
+
+                    // Build gratitudes list (only non-empty)
+                    val gratitudesList = editTexts.mapNotNull { et ->
+                        val text = et.text.toString().trim()
+                        if (text.isNotEmpty()) mapOf("text" to text) else null
+                    }
+
+                    if (gratitudesList.isEmpty()) {
+                        showToast( "Please enter at least one gratitude")
+                    }
+
+                    // Prepare HashMap<String, Any>
+                    val data = HashMap<String, Any>()
+                    data["date"] = currentDate
+                    data["gratitudes"] = gratitudesList
+
+                    // Call your existing addGratitude function
+                    val url = Constants.ADD_GRATITUDE
+                    viewModel.addGratitude(data, url)
+                }
+
+
 
             }
 

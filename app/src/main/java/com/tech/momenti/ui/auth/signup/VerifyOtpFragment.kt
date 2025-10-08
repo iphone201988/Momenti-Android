@@ -56,6 +56,7 @@ class VerifyOtpFragment : BaseFragment<FragmentVerifyOtpBinding>() {
                         if (myDataModel != null){
                             if (myDataModel.user != null){
                                 if (myDataModel.type == 1){
+                                     sharedPrefManager.setLoginData(myDataModel)
                                      findNavController().navigate(R.id.fragmentDailyTask)
                                 }
                                 else{
@@ -111,6 +112,8 @@ class VerifyOtpFragment : BaseFragment<FragmentVerifyOtpBinding>() {
                             data["email"] = email.toString()
                             data["otp"]  = otpData
                             data["type"] = 2
+
+                            viewModel.verifyOtp(data, Constants.VERIFY)
                          //   findNavController().navigate(R.id.fragmentNewPassword)
                         }
                     }

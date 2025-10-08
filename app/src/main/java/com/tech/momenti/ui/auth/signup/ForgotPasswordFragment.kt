@@ -13,6 +13,7 @@ import com.tech.momenti.base.utils.BindingUtils
 import com.tech.momenti.base.utils.Status
 import com.tech.momenti.base.utils.showToast
 import com.tech.momenti.data.api.Constants
+import com.tech.momenti.data.model.ForgotPasswordApiResponse
 import com.tech.momenti.data.model.SignupApiResponse
 import com.tech.momenti.databinding.FragmentForgotPasswordBinding
 import com.tech.momenti.ui.auth.AuthCommonVM
@@ -41,9 +42,9 @@ class ForgotPasswordFragment : BaseFragment<FragmentForgotPasswordBinding>() {
                 Status.SUCCESS ->  {
                     hideLoading()
                     try {
-                        val myDataModel : SignupApiResponse ? = BindingUtils.parseJson(it.data.toString())
+                        val myDataModel : ForgotPasswordApiResponse ? = BindingUtils.parseJson(it.data.toString())
                         if (myDataModel != null){
-                            if (myDataModel.data != null){
+                            if (myDataModel.user != null){
                                 val bundle = Bundle()
                                 bundle.putString("email", email)
                                 findNavController().navigate(R.id.fragmentVerifyOtp,bundle)

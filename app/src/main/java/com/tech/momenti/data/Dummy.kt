@@ -67,3 +67,16 @@ data class  Gratitude(
     var gratitude : String,
     var count : Int,
 )
+
+
+
+
+data class GratitudeItem(
+    val text: String
+)
+
+
+data class GratitudeRequest(
+    val date: String,
+    val gratitudes: List<GratitudeItem>
+)

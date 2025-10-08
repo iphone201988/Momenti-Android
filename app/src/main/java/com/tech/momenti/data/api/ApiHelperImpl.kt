@@ -71,11 +71,11 @@ class ApiHelperImpl @Inject constructor(private val apiService: ApiService, priv
         return apiService.apiPutForRawBody(url,getTokenFromSPref(), map)
     }
 
+//    private fun getTokenFromSPref(): String {
+//        return "Bearer"
+//    }
     private fun getTokenFromSPref(): String {
-        return "Bearer"
+        return "Bearer ${sharedPrefManager.getLoginData()?.token}"
     }
-  /*  private fun getTokenFromSPref1(): String {
-        return "Bearer ${sharedPrefManager.getCurrentUser()?.token}"
-    }*/
 
 }
