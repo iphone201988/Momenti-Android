@@ -16,6 +16,7 @@ import com.tech.momenti.base.BaseViewModel
 import com.tech.momenti.base.SimpleRecyclerViewAdapter
 import com.tech.momenti.data.DayWithWeekday
 import com.tech.momenti.data.TaskData
+import com.tech.momenti.data.api.Constants
 import com.tech.momenti.databinding.FragmentHomeBinding
 import com.tech.momenti.databinding.ItemLayoutSwipeBinding
 import com.tech.momenti.ui.common_activity.CommonActivity
@@ -45,6 +46,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), DaysAdapter.DayListene
     }
 
     override fun onCreateView(view: View) {
+
+        viewModel.getStreak(Constants.STREAK)
         setupCalendar()
         getTaskList()
         initAdapter()
@@ -167,6 +170,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), DaysAdapter.DayListene
 
     override fun dayShow(day: String?, weekday: String?, currentYear: Int?, currentMonth: Int?) {
         if (day == null || weekday == null || currentYear == null || currentMonth == null) return
+
+
+
+        // Convert to yyyy-MM-dd format
+        val dateStr = "$currentYear-${String.format("%02d", currentMonth)}-${String.format("%02d", day.toInt())}"
+
+        Log.d("SelectedDate", "Selected: $dateStr")
+
+        // ✅ Call your API here
+   //     callTasksApi(dateStr)
+
 
         val selectedDate = GregorianCalendar(currentYear, currentMonth - 1, day.toInt()).time
         val today = Calendar.getInstance().apply {

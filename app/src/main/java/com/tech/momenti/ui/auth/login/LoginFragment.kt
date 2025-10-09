@@ -3,6 +3,7 @@ package com.tech.momenti.ui.auth.login
 import android.content.Intent
 import android.text.InputType
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -25,6 +26,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
     private val viewModel : AuthCommonVM by viewModels()
+
+
     override fun onCreateView(view: View) {
         initOnClick()
         initObserver()
@@ -78,6 +81,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                         val data = HashMap<String, Any>()
                         data["email"] = binding.etEmail.text.toString().trim()
                         data["password"] = binding.etPassword.text.toString().trim()
+                        data["deviceType"] = 1
                         viewModel.login(data, Constants.LOGIN)
 
                     }

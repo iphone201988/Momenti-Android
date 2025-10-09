@@ -26,6 +26,8 @@ object Constants {
 
     const val DELETE_TASK = "task/delete"
 
+    const val STREAK = "task/get-streak"
+
 
 
 }

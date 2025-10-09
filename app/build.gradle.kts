@@ -5,6 +5,8 @@ plugins {
     alias(libs.plugins.kotlin1kept)
 }
 
+
+// firebase inside mordern bible mai
 android {
     namespace = "com.tech.momenti"
     compileSdk = 35
@@ -69,6 +71,8 @@ dependencies {
     implementation (libs.lottie)
     implementation (libs.converter.gson)
     implementation(libs.androidx.navigation.fragment)
+
+
 
 
 
