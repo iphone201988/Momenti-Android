@@ -5,6 +5,9 @@
 
     <data>
         <variable
+            name="bean"
+            type="com.tech.momenti.data.model.GetProfileApiResponse.User" />
+        <variable
             name="vm"
             type="com.tech.momenti.ui.edit_profile.EditProfileVm" />
     </data>
@@ -51,7 +54,7 @@
             android:gravity="start|center"
             android:textSize="@dimen/_14ssp"
             android:hint="Username"
-            android:text="John Doe"
+            android:text="@{bean.name}"
             android:textColor="@color/app_black"
             android:layout_marginHorizontal="@dimen/_20sdp"
             android:paddingHorizontal="@dimen/_10sdp"
@@ -72,7 +75,7 @@
             android:gravity="start|center"
             android:textSize="@dimen/_14ssp"
             android:hint="Enter email"
-            android:text="Johndoe123@gmail.com"
+            android:text="@{bean.email}"
             android:textColor="@color/app_black"
             android:layout_marginHorizontal="@dimen/_20sdp"
             android:paddingHorizontal="@dimen/_10sdp"

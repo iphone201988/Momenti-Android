@@ -112,7 +112,7 @@ data class LifeAreaResponse(
     )
 }
 
-
+/**************************   add task  api response *********************/
 data class AddTaskApiResponse(
     var `data`: Data?,
     var message: String?,
@@ -134,4 +134,74 @@ data class AddTaskApiResponse(
             var title: String?
         )
     }
+}
+
+/**************************  get task api response *********************/
+
+data class GetTaskApiResponse(
+    var `data`: Data?,
+    var message: String?,
+    var success: Boolean?
+) {
+    data class Data(
+        var dailyGratitude: Any?,
+        var dailyTask: DailyTask?
+    ) {
+        data class DailyTask(
+            var __v: Int?,
+            var _id: String?,
+            var createdAt: String?,
+            var date: String?,
+            var tasks: List<Task?>?,
+            var updatedAt: String?,
+            var userId: String?
+        ) {
+            data class Task(
+                var _id: String?,
+                var lifeAreaId: LifeAreaId?,
+                var status: String?,
+                var title: String?
+            ) {
+                data class LifeAreaId(
+                    var _id: String?,
+                    var lifeArea: String?
+                )
+            }
+        }
+    }
+}
+
+
+/**************************  get profile  api response *********************/
+
+data class GetProfileApiResponse(
+    var message: String?,
+    var success: Boolean?,
+    var user: User?
+) {
+    data class User(
+        var _id: String?,
+        var email: String?,
+        var isSocialLogin: Boolean?,
+        var name: String?,
+        var profileImage: Any?
+    )
+}
+
+
+/**************************  update  profile  api response *********************/
+
+
+data class UpdateProfileApiResponse(
+    var message: String?,
+    var success: Boolean?,
+    var user: User?
+) {
+    data class User(
+        var _id: String?,
+        var email: String?,
+        var isSocialLogin: Boolean?,
+        var name: String?,
+        var profileImage: Any?
+    )
 }

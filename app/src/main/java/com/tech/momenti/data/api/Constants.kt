@@ -28,6 +28,13 @@ object Constants {
 
     const val STREAK = "task/get-streak"
 
+    const val GET_TASKS = "task"
 
+    const val GET_PROFILE = "auth/get-profile"
+
+
+    const val UPDATE_PROFILE = "auth/update-profile"
+
+    const val  SOCIAL_LOGIN = "auth/social-login"
 
 }

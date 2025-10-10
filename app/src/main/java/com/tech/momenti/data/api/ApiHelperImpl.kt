@@ -71,7 +71,14 @@ class ApiHelperImpl @Inject constructor(private val apiService: ApiService, priv
         return apiService.apiPutForRawBody(url,getTokenFromSPref(), map)
     }
 
-//    private fun getTokenFromSPref(): String {
+    override suspend fun apiGetWithQueryAuth(
+        url: String,
+        data: HashMap<String, Any>
+    ): Response<JsonObject> {
+        return  apiService.apiGetWithQueryAuth(url,data,getTokenFromSPref())
+    }
+
+    //    private fun getTokenFromSPref(): String {
 //        return "Bearer"
 //    }
     private fun getTokenFromSPref(): String {

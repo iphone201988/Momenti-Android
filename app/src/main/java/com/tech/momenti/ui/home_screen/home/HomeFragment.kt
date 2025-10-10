@@ -14,9 +14,13 @@ import com.tech.momenti.R
 import com.tech.momenti.base.BaseFragment
 import com.tech.momenti.base.BaseViewModel
 import com.tech.momenti.base.SimpleRecyclerViewAdapter
+import com.tech.momenti.base.utils.BindingUtils
+import com.tech.momenti.base.utils.Status
 import com.tech.momenti.data.DayWithWeekday
 import com.tech.momenti.data.TaskData
 import com.tech.momenti.data.api.Constants
+import com.tech.momenti.data.model.GetProfileApiResponse
+import com.tech.momenti.data.model.GetTaskApiResponse
 import com.tech.momenti.databinding.FragmentHomeBinding
 import com.tech.momenti.databinding.ItemLayoutSwipeBinding
 import com.tech.momenti.ui.common_activity.CommonActivity
@@ -27,6 +31,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.GregorianCalendar
 import java.util.Locale
+import java.util.TimeZone
 
 
 @AndroidEntryPoint
@@ -43,15 +48,58 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), DaysAdapter.DayListene
         taskList.add(TaskData(3, "Need to read at least 5 pages of The Alchemist"))
         taskList.add(TaskData(4, "Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum."))
         taskList.add(TaskData(5, "Need to read at least 5 pages of The Alchemist"))
+
     }
 
     override fun onCreateView(view: View) {
 
         viewModel.getStreak(Constants.STREAK)
+        viewModel.getProfile(Constants.GET_PROFILE)
         setupCalendar()
         getTaskList()
         initAdapter()
+        initObserver()
         initOnClick()
+    }
+
+    private fun initObserver() {
+        viewModel.obrCommon.observe(viewLifecycleOwner, Observer{
+            when(it?.status){
+                Status.LOADING -> {
+                    showLoading()
+                }
+                Status.SUCCESS -> {
+                    hideLoading()
+                    when(it.message){
+                        "getProfile" ->{
+                            val myDataModel : GetProfileApiResponse ? = BindingUtils.parseJson(it.data.toString())
+                            if (myDataModel != null){
+                                if (myDataModel.user != null){
+                                    binding.bean = myDataModel.user
+                                }
+                            }
+                        }
+                        "getTaskGratitude" ->{
+                            val myDataModel : GetTaskApiResponse ? = BindingUtils.parseJson(it.data.toString())
+                            if (myDataModel != null){
+                                if (myDataModel.data != null){
+                                    
+                                }
+                            }
+                        }
+                    }
+
+                }
+                Status.ERROR -> {
+                    hideLoading()
+                }
+                else ->  {
+
+                }
+            }
+        })
+
+
     }
 
     private fun initOnClick() {
@@ -60,19 +108,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), DaysAdapter.DayListene
                 R.id.tvAddTask ->{
                     val intent= Intent(requireContext(), CommonActivity::class.java)
                     intent.putExtra("from","addTask")
-
                     startActivity(intent)
                 }
                 R.id.ivNotification ->{
                     val intent= Intent(requireContext(), CommonActivity::class.java)
                     intent.putExtra("from","notification")
-
                     startActivity(intent)
                 }
                 R.id.addBtn ->{
                     val intent= Intent(requireContext(), CommonActivity::class.java)
                     intent.putExtra("from","addGratitude")
-
                     startActivity(intent)
                 }
 
@@ -173,13 +218,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), DaysAdapter.DayListene
 
 
 
-        // Convert to yyyy-MM-dd format
-        val dateStr = "$currentYear-${String.format("%02d", currentMonth)}-${String.format("%02d", day.toInt())}"
+        // Convert to ISO 8601 format (yyyy-MM-dd'T'HH:mm:ss.SSS'Z')
+        val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC")).apply {
+            set(Calendar.YEAR, currentYear)
+            set(Calendar.MONTH, currentMonth - 1) // Month is 0-based
+            set(Calendar.DAY_OF_MONTH, day.toInt())
+        }
+
+        val isoFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+        isoFormat.timeZone = TimeZone.getTimeZone("UTC")
+        val dateStr = isoFormat.format(calendar.time)
 
         Log.d("SelectedDate", "Selected: $dateStr")
 
-        // ✅ Call your API here
-   //     callTasksApi(dateStr)
+// ✅ Call your API here
+        callTasksApi(dateStr)
 
 
         val selectedDate = GregorianCalendar(currentYear, currentMonth - 1, day.toInt()).time
@@ -211,6 +264,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), DaysAdapter.DayListene
         }
 
         Log.e("date", "$currentYear $currentMonth $day $weekday $monthName")
+    }
+
+    private fun callTasksApi(dateStr: String) {
+        val data = HashMap<String, Any>()
+        data["date"] = dateStr
+        viewModel.getTaskGratitude(data, Constants.GET_TASKS)
     }
 
 }

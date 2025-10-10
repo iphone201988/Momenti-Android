@@ -4,6 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
+        <variable
+            name="bean"
+            type="com.tech.momenti.data.model.GetProfileApiResponse.User" />
         <variable
             name="vm"
             type="com.tech.momenti.ui.home_screen.HomeViewModel" />
@@ -57,7 +61,7 @@
                     style="@style/Textview_Regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Jhon Doe"
+                    android:text="@{bean.name}"
                     android:layout_marginStart="@dimen/_20sdp"
                     android:textSize="@dimen/_14ssp"
                     android:layout_marginTop="@dimen/_15sdp"

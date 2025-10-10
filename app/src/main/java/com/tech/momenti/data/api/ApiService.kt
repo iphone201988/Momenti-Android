@@ -73,6 +73,11 @@ interface ApiService {
         @Url url: String, @QueryMap data: HashMap<String, String>
     ): Response<JsonObject>
 
+    @GET
+    suspend fun apiGetWithQueryAuth(
+        @Url url: String, @QueryMap data: HashMap<String, Any>, @Header("Authorization") token: String
+    ): Response<JsonObject>
+
 
     @Multipart
     @JvmSuppressWildcards
